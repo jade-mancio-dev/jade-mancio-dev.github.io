@@ -1,0 +1,605 @@
+:root {
+    --bg-black: #000000;
+    --glass-bg: rgba(255, 255, 255, 0.05);
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --text-white: #ffffff;
+    --font-main: 'Orbitron', sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-black);
+    color: var(--text-white);
+    font-family: var(--font-main);
+    overflow-x: hidden;
+}
+
+/* 1.5. Header Section */
+.glass-header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    background: var(--glass-bg);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--glass-border);
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 4rem; /* Matching your grid scope */
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.logo-area {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.logo {
+    height: 40px;
+    width: auto;
+}
+
+.name {
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+.contact-btn {
+    text-decoration: none;
+    color: var(--text-white);
+    border: 1px solid var(--text-white);
+    padding: 8px 20px;
+    font-size: 0.8rem;
+    transition: all 0.3s ease;
+}
+
+.contact-btn:hover {
+    background: var(--text-white);
+    color: var(--bg-black);
+}
+
+/*1. Hero Section */
+.hero {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0 4rem; /* Your 1-inch scope on L/R */
+    text-align: center;
+}
+
+.main-title {
+    font-size: clamp(3rem, 8vw, 6rem); /* Responsive font size */
+    font-weight: 900;
+    letter-spacing: 5px;
+    margin-bottom: 10px;
+    width: 100%;
+}
+
+.sub-title {
+    font-size: clamp(1rem, 3vw, 1.5rem);
+    font-weight: 400;
+    color: #888;
+    letter-spacing: 8px;
+}
+
+/* --- Bottom Stats Bar --- */
+.stats-bar {
+    position: absolute;
+    bottom: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    /* Horizontal lines removed */
+    background: transparent; 
+}
+
+.stat-item {
+    /* Increased padding for a "bigger" feel */
+    padding: 15px 60px; 
+    
+    /* Font size increased and bolded */
+    font-size: 1.5rem; 
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    
+    /* Vertical lines only */
+    border-left: 4px solid #fff; 
+    display: flex;
+    align-items: center;
+    transition: transform 0.3s ease;
+}
+
+.stat-item:last-child {
+    /* Closing vertical line */
+    border-right: 4px solid #fff;
+}
+/*2.About me Section*/
+/*2.About me Section*/
+.about-me {
+    background-color: #f9f9f9; /* Cinematic White */
+    color: #1a1a1a; 
+    
+    /* Full Page Settings */
+    min-height: 100vh; 
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    /* Grid Scope: 1-inch gap (approx 4rem) */
+    padding: 4rem; 
+    
+    /* Layering: This hides the hero stats bar when scrolling */
+    position: relative;
+    z-index: 5; 
+}
+
+.about-container {
+    max-width: 1400px;
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 4rem;
+}
+
+/* --- Layout Breakdown --- */
+
+.about-text {
+    flex: 1;
+    text-align: left;
+}
+
+.about-header {
+    font-family: var(--font-main);
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 900;
+    margin-bottom: 2rem;
+    letter-spacing: 3px;
+    color: #000;
+}
+
+.about-paragraph {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: clamp(1rem, 1.2vw, 1.25rem);
+    line-height: 1.8;
+    margin-bottom: 1.5rem;
+    max-width: 650px;
+}
+
+.about-image-wrapper {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end; /* Pushes image to the right */
+}
+
+.about-img {
+    width: 100%;
+    max-width: 500px; /* Large cinematic size */
+    aspect-ratio: 1 / 1; /* Perfect Square/Cubic */
+    object-fit: cover;
+    border-radius: 40px; /* Rounded cubic design */
+    box-shadow: 0 30px 60px rgba(0,0,0,0.15);
+    /* Lag-free rendering hint */
+    will-change: transform; 
+}
+
+/* --- 3. Works Section (Stable & Large) --- */
+/* --- 3. Works Section --- */
+.works-section {
+    background-color: var(--bg-black);
+    position: relative;
+    /* Binabaan natin sa 400vh para mas mabilis sumunod ang Tech Stack */
+    height: 400vh; 
+    padding-top: 0;
+}
+
+/* Header Fix: Centered at Sticky */
+.works-header {
+    width: 100vw; /* Siguradong full width ang container */
+    height: 20vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: sticky; 
+    top: 0; 
+    z-index: 1000;
+    background-color: var(--bg-black);
+    left: 0;
+}
+
+.orbitron-header {
+    font-size: clamp(3rem, 7vw, 5rem);
+    color: var(--text-white);
+    letter-spacing: 1.2rem;
+    text-align: center;
+    margin: 0;
+    width: 100%;
+}
+
+.gallery-container {
+    padding: 0 4rem;
+    max-width: 1400px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.work-card-wrapper {
+    position: sticky;
+    height: 100vh; 
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding-top: 5vh; /* Space mula sa header */
+}
+
+/* --- STACKING LOGIC --- */
+.work-card-wrapper:nth-child(1) { top: 20vh; z-index: 1; }
+.work-card-wrapper:nth-child(2) { top: calc(20vh + 20px); z-index: 2; }
+.work-card-wrapper:nth-child(3) { top: calc(20vh + 40px); z-index: 3; }
+.work-card-wrapper:nth-child(4) { top: calc(20vh + 60px); z-index: 4; }
+
+.work-card {
+    width: 100%;
+    height: 60vh; 
+    background-color: #0a0a0a;
+    border: 2px solid #ffffff; 
+    border-radius: 20px;
+    display: flex;
+    align-items: flex-end;
+    padding: 3rem;
+    box-shadow: 0 -20px 50px rgba(0,0,0,0.8);
+}
+
+/* Last card margin buffer*/
+.work-card-wrapper:last-child {
+    margin-bottom: 50vh;
+}
+
+/* --- 4. Tech Stack Section --- */
+.tech-stack-section {
+    background-color: #000000;
+    color: #ffffff;
+    padding: 80px 20px;
+    display: flex;
+    justify-content: center;
+    font-family: 'Inter', sans-serif;
+}
+
+.tech-container {
+    max-width: 900px;
+    width: 100%;
+}
+
+.tech-header {
+    font-size: 3rem;
+    margin-bottom: 3rem;
+    text-align: center;
+    font-weight: 900;
+    letter-spacing: 5px;
+}
+
+.skills-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.skill-row {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+/* --- Light Neumorphic Icon Design --- */
+.tech-icon-circle {
+    background: #f0f0f0;
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    /* Soft shadows for white BG */
+    
+    display: grid;
+    place-items: center;
+    flex-shrink: 0;
+}
+
+.icon-inner {
+    width: 70px;
+    height: 70px;
+    background: #f9f9f9;
+    border-radius: 50%;
+    box-shadow: inset 4px 4px 8px #777777, 
+                inset -4px -4px 8px #777777;
+    display: grid;
+    place-items: center;
+}
+
+.icon-inner img {
+    max-width: 35px;
+    max-height: 35px;
+    object-fit: contain;
+}
+
+/* --- Progress Info --- */
+.skill-info { flex-grow: 1; }
+
+.skill-label {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+}
+
+.progress-bar-bg {
+    width: 100%;
+    height: 18px;
+    background: #ffffff;
+    /* This creates the slanted "cut-out" look */
+    clip-path: polygon(10px 0%, 100% 0%, calc(100% - 10px) 100%, 0% 100%);
+    box-shadow: inset 2px 2px 5px rgba(0,0,0,0.1);
+}
+
+.progress-fill {
+    height: 100%;
+    transition: width 1s ease-in-out; /* Smooth loading lag-free */
+}
+
+/* --- Colors --- */
+.html-fill { background: #E44D26; width: 50%; }
+.css-fill  { background: #264DE4; width: 50%; }
+.js-fill   { background: #F7DF1E; width: 30%; }
+.node-fill { background: #68A063; width: 20%; }
+
+/*5. Contact Section*/
+/* --- 5. Contact Section --- */
+.contact-section {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  background-color: #f8f8f8; /* Contrast against the dark tech stack */
+  color: #000000;
+  z-index: 10; /* Ensures it stays above the sticky works */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 100px 4rem;
+  overflow: hidden;
+}
+
+.contact-container {
+  display: flex;
+  width: 100%;
+  max-width: 1400px;
+  align-items: stretch;
+  justify-content: space-between;
+  gap: 80px;
+}
+
+/* --- Form Styles --- */
+.contact-left { flex: 1; }
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.input-group {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.input-group label {
+  font-family: var(--font-main);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  margin-bottom: 12px;
+  opacity: 0.6;
+}
+
+.input-group input, 
+.input-group textarea {
+  background: transparent;
+  border: none;
+  outline: none;
+  font-size: 1.2rem;
+  font-family: 'Poppins', sans-serif;
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(0,0,0,0.1);
+  will-change: border-color;
+}
+
+.focus-border {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: #000;
+  transition: 0.4s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+.input-group input:focus ~ .focus-border,
+.input-group textarea:focus ~ .focus-border {
+  width: 100%;
+}
+
+.contact-send-btn {
+  align-self: flex-start;
+  background: transparent;
+  color: #000;
+  border: 1px solid #000;
+  padding: 18px 50px;
+  font-family: var(--font-main);
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  cursor: pointer;
+  position: relative;
+  transition: color 0.4s ease;
+  z-index: 1;
+}
+
+.contact-send-btn::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background: #000;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.4s cubic-bezier(0.22, 0.61, 0.36, 1);
+  z-index: -1;
+}
+
+.contact-send-btn:hover { color: #fff; }
+.contact-send-btn:hover::before { transform: scaleX(1); transform-origin: left; }
+
+/* --- Typography Side --- */
+.contact-right {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.availability-tag {
+  font-family: var(--font-main);
+  font-size: 0.7rem;
+  letter-spacing: 2px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #666;
+  margin-bottom: 20px;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  background-color: #28a745;
+  border-radius: 50%;
+  box-shadow: 0 0 10px #28a745;
+  animation: blink 2s infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(1.2); }
+}
+
+.contact-header {
+  font-family: var(--font-main);
+  font-size: clamp(3rem, 6vw, 5rem);
+  line-height: 1;
+  font-weight: 900;
+  text-transform: uppercase;
+  margin-bottom: 30px;
+}
+
+.contact-subtext {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  max-width: 450px;
+  color: #333;
+  border-left: 3px solid #000;
+  padding-left: 25px;
+  font-family: 'Poppins', sans-serif;
+}
+
+.contact-email-link {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  color: #000;
+  font-family: var(--font-main);
+  font-weight: 700;
+  font-size: 1.1rem;
+  margin-top: 10px;
+}
+
+.contact-footer {
+  margin-top: 80px;
+  padding-bottom: 20px;
+  opacity: 0.5;
+  font-size: 0.7rem;
+  letter-spacing: 3px;
+}
+
+/* Responsive Fix */
+@media (max-width: 968px) {
+  .contact-container { flex-direction: column-reverse; gap: 60px; }
+  .contact-section { padding: 80px 2rem; }
+  .mobile-hide-br { display: none; }
+}
+/*6.Mobile Responsiveness-- Lag free-- */
+@media (max-width: 768px) {
+    .stats-bar {
+        flex-direction: column;
+        position: relative;
+        bottom: 0;
+        margin-top: 50px;
+    }
+    
+    .stat-item {
+        font-size: 1.1rem; /* Slightly smaller on mobile to prevent overflow */
+        padding: 15px 20px;
+        border-left: 4px solid #fff;
+        border-right: 4px solid #fff; /* Box each item on mobile */
+        margin-bottom: 10px;
+        width: 80%;
+        justify-content: center;
+    }
+}
+/* 7. Mobile Responsiveness Adjustments */
+@media (max-width: 992px) {
+    .about-me {
+        padding: 6rem 1.5rem; /* Extra top padding for header clearance */
+        height: auto; /* Allows section to grow if text is long on small screens */
+    }
+    
+    .about-container {
+        flex-direction: column-reverse; 
+        gap: 3rem;
+    }
+
+    .about-text {
+        text-align: center;
+    }
+
+    .about-paragraph {
+        margin: 0 auto 1.5rem;
+    }
+
+    .about-image-wrapper {
+        justify-content: center;
+    }
+}
+/* Responsive Mobile Fix */
+@media (max-width: 600px) {
+    .skill-row { flex-direction: column; text-align: center; gap: 15px; }
+    .skill-info { width: 100%; }
+}

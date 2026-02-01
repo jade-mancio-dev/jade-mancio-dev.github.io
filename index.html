@@ -11,29 +11,33 @@
 </head>
 <body>
 
-    <header class="glass-header">
-        <div class="header-container">
-            <div class="logo-area">
-                <img src="assets/img/JMT1.png" alt="Logo" class="logo">
-                <span class="name">JADE MANCIO</span>
-            </div>
-            <a href="#contact" class="contact-btn">CONTACT</a>
+    <header class="transparent-header">
+    <div class="header-container">
+        <div class="logo-area">
+            <img src="assets/img/JMT1.png" alt="Logo" class="logo">
+            <span class="name">JADE MANCIO</span>
         </div>
+        <a href="#contact" class="contact-btn">CONTACT</a>
+    </div>
     </header>
 
     <section class="hero">
-        <div class="hero-content">
+    <canvas id="hero-bg"></canvas>
+
+    <div class="hero-content">
+        <div class="hero-text-wrapper">
             <h1 class="main-title">HI I'M JADE</h1>
             <h3 class="sub-title">FRONT-END DEVELOPER</h3>
         </div>
+    </div>
 
-        <div class="stats-bar">
-            <div class="stat-item">PROJECTS 4</div>
-            <div class="stat-item">CLIENTS 3</div>
-            <div class="stat-item">SATISFACTION 80%</div>
-            <div class="stat-item">EXPERIENCE 1 YEAR</div>
-        </div>
-    </section>
+    <div class="stats-bar">
+        <div class="stat-item">PROJECTS <strong>4</strong></div>
+        <div class="stat-item">CLIENTS <strong>3</strong></div>
+        <div class="stat-item">SATISFACTION <strong>80%</strong></div>
+        <div class="stat-item">EXPERIENCE <strong>1 YEAR</strong></div>
+    </div>
+</section>
 
     <section class="about-me">
     <div class="about-container">
@@ -208,7 +212,7 @@
         </div>
         <h1 class="contact-header">LET'S <span class="mobile-hide-br"><br></span> CONNECT</h1>
         <p class="contact-subtext">
-          Whether you have a fully-formed idea or just the beginnings of a vision, I’m here to help bring it to life. I specialize in turning complex problems into elegant digital solutions.
+          Bringing your vision to life through elegant, high-performance digital solutions.
         </p>
       </div>
 
@@ -224,9 +228,83 @@
   </div>
 
   <footer class="contact-footer">
-    <p>ALL RIGHTS RESERVED 2026</p>
-  </footer>
+  <p>© 2026 JADE MANCIO <span class="separator">|</span> ALL RIGHTS RESERVED</p>
+</footer>
 </section>
+<script>
+    const header = document.querySelector('.transparent-header');
+    let isHeaderActionLocked = false;
+    let touchStartY = 0;
+
+    function revealHeader() {
+        if (header.classList.contains('is-hidden')) {
+            header.classList.remove('is-hidden');
+            // Only lock when revealing (Scrolling Up)
+            isHeaderActionLocked = true;
+            setTimeout(() => {
+                isHeaderActionLocked = false;
+            }, 400); 
+            return true;
+        }
+        return false;
+    }
+
+    function hideHeader() {
+        if (!header.classList.contains('is-hidden')) {
+            header.classList.add('is-hidden');
+            return true;
+        }
+        return false;
+    }
+
+    // MOUSE WHEEL
+    window.addEventListener('wheel', (e) => {
+        const isScrollingUp = e.deltaY < 0;
+        const isScrollingDown = e.deltaY > 0;
+
+        if (isScrollingUp) {
+            // If hidden, show header and STOP the page scroll
+            if (header.classList.contains('is-hidden')) {
+                revealHeader();
+                e.preventDefault();
+            } 
+            // If the "Show" animation is still playing, keep the page still
+            else if (isHeaderActionLocked) {
+                e.preventDefault();
+            }
+        } 
+        else if (isScrollingDown) {
+            // Just hide the header, but DO NOT call e.preventDefault()
+            // This allows the website to scroll at the exact same time
+            hideHeader();
+        }
+    }, { passive: false });
+
+    // TOUCH/MOBILE
+    window.addEventListener('touchstart', (e) => {
+        touchStartY = e.touches[0].clientY;
+    }, { passive: true });
+
+    window.addEventListener('touchmove', (e) => {
+        const touchCurrentY = e.touches[0].clientY;
+        const deltaY = touchStartY - touchCurrentY; 
+
+        if (deltaY < -5) { // Swiping down (Scrolling UP)
+            if (header.classList.contains('is-hidden')) {
+                revealHeader();
+                e.preventDefault();
+            } else if (isHeaderActionLocked) {
+                e.preventDefault();
+            }
+        } 
+        else if (deltaY > 5) { // Swiping up (Scrolling DOWN)
+            hideHeader();
+            // No e.preventDefault() here so page moves immediately
+        }
+    }, { passive: false });
+</script>
+<script src="assets/js/main.js"></script>
+
 
 </body>
 </html>

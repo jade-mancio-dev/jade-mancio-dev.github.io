@@ -53,6 +53,7 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding: 1rem 4rem; /* Matching your grid scope */
     pointer-events: auto;
     max-width: 1400px;
     margin: 0 auto;
@@ -64,14 +65,6 @@ body {
     content: none;
 }
 
-.header-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem 4rem; /* Matching your grid scope */
-    max-width: 1400px;
-    margin: 0 auto;
-}
 .logo, .name, .contact-btn {
     filter: brightness(0) invert(1); /* Forces them to be white regardless of source */
     color: #ffffff;
@@ -167,10 +160,10 @@ body {
     padding: 0 4rem;
     text-align: center;
 
-    /*  MGA DINAGDAG/INAYOS  */
-    position: relative;        
-    z-index: 10;               
-    background-color: transparent !important; 
+    /* --- MGA DINAGDAG/INAYOS --- */
+    position: relative;        /* Kailangan para gumana ang z-index */
+    z-index: 10;               /* Mas mataas sa contact section (z-index: 1) */
+    background-color: #000000; /* Solid black para hindi transparent */
 }
 
 .main-title {
@@ -314,7 +307,7 @@ body {
     width: 100%; 
     overflow: clip;
 }
-
+    
 /* Header Fix: Centered at Sticky */
 .works-header {
     width: 100vw; /* Siguradong full width ang container */
@@ -347,7 +340,7 @@ body {
 
 .work-card-wrapper {
     position: sticky;
-    height: 100vh; 
+    height: 95vh; 
     display: flex;
     justify-content: center;
     align-items: flex-start;
@@ -355,23 +348,109 @@ body {
 }
 
 /* --- STACKING LOGIC --- */
-.work-card-wrapper:nth-child(1) { top: 20vh; z-index: 13; }
-.work-card-wrapper:nth-child(2) { top: calc(20vh + 20px); z-index: 14; }
-.work-card-wrapper:nth-child(3) { top: calc(20vh + 40px); z-index: 15; }
-.work-card-wrapper:nth-child(4) { top: calc(20vh + 60px); z-index: 16; }
+.work-card-wrapper:nth-child(1) { top: 5vh; z-index: 13; }
+.work-card-wrapper:nth-child(2) { top: calc(5vh + 10px); z-index: 14; }
+.work-card-wrapper:nth-child(3) { top: calc(5vh + 20px); z-index: 15; }
+.work-card-wrapper:nth-child(4) { top: calc(5vh + 40px); z-index: 16; }
 
 .work-card {
     width: 100%;
-    height: 60vh; 
+    height: 75vh; 
     background-color: #111111;
-    border: 2px solid #ffffff; 
-    border-radius: 20px;
+    border: 1px solid #ffffff; 
+    border-radius: 25px;
     display: flex;
-    align-items: flex-end;
-    padding: 3rem;
+    flex-direction: column;
+    padding: 2rem;
     box-shadow: 0 -20px 50px rgba(0,0,0,0.8);
+    overflow: hidden;
+    position: relative;
+}
+.preview-grid {
+    display: flex;
+    width: 100%;
+    height: 80%; /* Image area takes 70% of card height */
+    gap: 30px;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 2px;
 }
 
+/* PC Landscape View */
+.view-pc {
+    flex: 2; /* Takes up 2 parts of space (approx 66%) */
+    height: 100%;
+    background: #1a1a1a;
+    border-radius: 15px;
+    border: 4px solid #333; /* Monitor frame effect */
+    position: relative;
+    overflow: hidden;
+}
+
+/* Mobile Portrait View */
+.view-mobile {
+    flex: 0.8; /* Takes up less space (approx 33%) */
+    height: 100%; /* Slightly shorter to look like a phone next to a monitor */
+    background: #1a1a1a;
+    border-radius: 25px; /* Rounder edges for phone look */
+    border: 5px solid #222; /* Phone frame effect */
+    position: relative;
+    overflow: hidden;
+    aspect-ratio: 9 / 16; /* Forced portrait ratio */
+}
+
+/* Image Handling */
+.view-pc img, .view-mobile img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+work-card:hover img {
+    transform: scale(1.05);
+}
+
+/* Labels */
+.view-label {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    background: rgba(0,0,0,0.7);
+    color: #fff;
+    padding: 4px 10px;
+    font-size: 0.7rem;
+    border-radius: 5px;
+    letter-spacing: 1px;
+}
+
+/* --- Card Content --- */
+.card-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    padding-top: 1.5rem;
+}
+
+.card-text span {
+    color: #555;
+    font-size: 1.2rem;
+    font-weight: 900;
+}
+
+.card-text h2 {
+    color: #fff;
+    font-size: 2rem;
+    margin: 0;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+}
+
+/* Optimization for smaller PCs */
+@media (max-height: 800px) {
+    .work-card { height: 85vh; }
+    .card-text h2 { font-size: 1.5rem; }
+}
 /* Last card margin buffer*/
 .work-card-wrapper:last-child {
     margin-bottom: 50vh;
@@ -419,7 +498,7 @@ body {
 
 /* --- Light Neumorphic Icon Design --- */
 .tech-icon-circle {
-    background: #f0f0f0;
+    background: #333333;
     width: 90px;
     height: 90px;
     border-radius: 50%;
@@ -433,7 +512,7 @@ body {
 .icon-inner {
     width: 70px;
     height: 70px;
-    background: #f9f9f9;
+    background: #ffffff;
     border-radius: 50%;
     box-shadow: inset 4px 4px 8px #777777, 
                 inset -4px -4px 8px #777777;
@@ -748,57 +827,390 @@ body {
     opacity: 0.8;
 }
 
-/* Responsive Fix */
+/*100. Mobile Responsiveness(Lag-free) */
+/* --- 100. Mobile Responsiveness (Lag-free) --- */
+
+/* Burger Menu Styles */
+.burger-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    cursor: pointer;
+    margin-right: 15px;
+}
+
+.burger-menu span {
+    display: block;
+    width: 25px;
+    height: 2px;
+    background-color: #fff;
+    transition: width 0.3s ease;
+}
+
+.burger-menu span:last-child {
+    width: 18px; /* Stylish shorter second line */
+}
+
+/* Responsive Rules for Mobile Portrait */
+@media (max-width: 768px) {
+    .transparent-header {
+        padding: 0 1rem;
+        height: 70px;
+    }
+
+    .header-container {
+        padding: 0;
+        
+    }
+
+    .name {
+        font-size: 0.8rem; /* Smaller name to prevent overlap */
+        letter-spacing: 1px;
+    }
+
+    .logo {
+        height: 30px;
+    }
+
+    .contact-btn {
+        padding: 8px 18px;
+        font-size: 0.7rem;
+    }
+
+    /* Hero Text Adjustments */
+    .hero {
+        padding: 0 1.5rem;
+    }
+    /* Optimization: Hardware Acceleration for smoother mobile feel */
+    .hero-content, .stats-bar {
+        will-change: transform;
+        transform: translateZ(0);
+    }
+
+    .main-title {
+        /* Prevents piling: force text to fit screen width */
+        font-size: clamp(2rem, 12vw, 3.5rem); 
+        white-space: nowrap;
+        letter-spacing: 2px;
+    }
+
+    .sub-title {
+        font-size: 0.7rem;
+        letter-spacing: 4px;
+        white-space: nowrap;
+    }
+
+    /* Stats Bar Mobile - Ultra Compact & Horizontal */
+    .stats-bar {
+        position: absolute;
+        bottom: 30px;
+        left: 0;
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap; 
+        justify-content: center;
+        align-items: center;
+        
+        /* Performance optimization */
+        will-change: transform;
+        transform: translateZ(0);
+        padding: 0;
+    }
+
+    .stat-item {
+        flex: 0 0 50%; 
+        box-sizing: border-box;
+        padding: 10px 0; 
+        font-size: 0.65rem; 
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        color: rgba(255, 255, 255, 0.8);
+        display: flex;
+        align-items: center;
+        white-space: normal;
+        line-height: 1.2;
+
+        /* FORCE REMOVE ALL BORDERS FIRST */
+        border: none !important; 
+    }
+
+    /* Left Column: Anchored to the Center Spine */
+    .stat-item:nth-child(odd) {
+        justify-content: flex-end;
+        padding-right: 15px; 
+        text-align: right;
+        
+        /* ONLY APPLY THE CENTER LINE HERE */
+        border-right: 1px solid rgba(255, 255, 255, 0.3) !important;
+    }
+
+    /* Right Column: Anchored to the Center Spine */
+    .stat-item:nth-child(even) {
+        justify-content: flex-start;
+        padding-left: 15px;
+        text-align: left;
+        
+        /* Ensure no border exists on the right edge */
+        border-right: none !important;
+    }
+
+    .stat-item strong {
+        margin-left: 6px;
+        font-weight: 800;
+        color: #fff;
+        font-size: 0.75rem;
+        display: inline-block;
+        white-space: nowrap; 
+    }
+}
+
 @media (max-width: 968px) {
   .contact-container { flex-direction: column-reverse; gap: 60px; }
   .contact-section { padding: 80px 2rem; }
   .mobile-hide-br { display: none; }
 }
-/*6.Mobile Responsiveness-- Lag free-- */
-@media (max-width: 768px) {
-    .stats-bar {
-        flex-direction: column;
-        position: relative;
-        bottom: 0;
-        margin-top: 50px;
-    }
-    
-    .stat-item {
-        font-size: 1.1rem; /* Slightly smaller on mobile to prevent overflow */
-        padding: 15px 20px;
-        border-left: 4px solid #fff;
-        border-right: 4px solid #fff; /* Box each item on mobile */
-        margin-bottom: 10px;
-        width: 80%;
-        justify-content: center;
-    }
+
+
+/* --- Desktop vs Mobile visibility --- */
+.burger-menu { display: none; } /* Hidden by default */
+
+@media (min-width: 769px) {
+    .desktop-only { display: inline-block; }
 }
-/* 7. Mobile Responsiveness Adjustments */
-@media (max-width: 992px) {
+
+@media (max-width: 768px) {
+    .desktop-only { display: none; }
+    .burger-menu { display: flex; }
+}
+
+/* --- Mobile Overlay Styles --- */
+.nav-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.95);
+    z-index: 2000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.nav-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.nav-links {
+    list-style: none;
+    text-align: center;
+}
+
+.nav-links li { margin: 25px 0; }
+
+.nav-links a {
+    font-family: 'Orbitron', sans-serif;
+    color: white;
+    text-decoration: none;
+    font-size: 1.5rem;
+    letter-spacing: 4px;
+    transition: color 0.3s;
+}
+
+/* Burger Animation to 'X' (Optional but pro) */
+.burger-menu.active span:nth-child(1) {
+    transform: translateY(4px) rotate(45deg);
+}
+.burger-menu.active span:nth-child(2) {
+    transform: translateY(-4px) rotate(-45deg);
+    width: 25px; /* Match width on open */
+}
+
+/*101. About Me: Portrait Refinement*/
+
+@media (max-width: 768px) {
     .about-me {
-        padding: 6rem 1.5rem; /* Extra top padding for header clearance */
-        height: auto; /* Allows section to grow if text is long on small screens */
+        padding: 4rem 1.5rem; /* Balanced padding */
+        height: auto;
+        overflow: hidden;
+        /* Performance: hardware acceleration */
+        will-change: transform;
     }
     
     .about-container {
-        flex-direction: column-reverse; 
-        gap: 3rem;
+        display: flex;
+        flex-direction: column-reverse; /* Image on top, text below for better flow */
+        gap: 2.5rem;
+        align-items: center;
     }
 
+    /* Image Refinement */
+    .about-image-wrapper {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+
+    .about-img {
+        max-width: 220px; /* Kept compact to save vertical space */
+        height: auto;
+        border-radius: 20px; /* Softens the look */
+        /* Slight shadow for depth without lag */
+        filter: drop-shadow(0 10px 20px rgba(0,0,0,0.1));
+    }
+
+    /* Typography Refinement */
     .about-text {
         text-align: center;
+        max-width: 100%;
+    }
+
+    .about-header {
+        font-size: 1.8rem; /* Prominent but not overwhelming */
+        letter-spacing: 3px;
+        margin-bottom: 1.5rem;
+        position: relative;
+        display: inline-block;
+    }
+
+    /* Decorative line under header (Optional) */
+    .about-header::after {
+        content: '';
+        position: absolute;
+        bottom: -8px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 40px;
+        height: 2px;
+        background: #fff; /* Match your accent color */
+        opacity: 0.5;
     }
 
     .about-paragraph {
-        margin: 0 auto 1.5rem;
-    }
-
-    .about-image-wrapper {
-        justify-content: center;
+        font-size: 0.95rem; /* Slightly smaller for mobile comfort */
+        line-height: 1.6;    /* Increased breathing room */
+        color: rgb(0, 0, 0);
+        margin: 0 auto 1.2rem;
+        max-width: 90%;    /* Prevents text from hitting screen edges */
+        font-weight: 300;  /* Lighter weight looks more modern */
     }
 }
-/* Responsive Mobile Fix */
-@media (max-width: 600px) {
-    .skill-row { flex-direction: column; text-align: center; gap: 15px; }
-    .skill-info { width: 100%; }
+
+/*102. works section mobile responsive*/
+@media (max-width: 768px) {
+    .works-header {
+        position: relative;
+        height: auto;
+        padding-bottom: 2rem;
+        
+        /* THE CENTERING FIX */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .orbitron-header {
+        font-size: clamp(2rem, 10vw, 3.5rem);
+        line-height: 1;
+        margin: 0 auto; /* Centers horizontally in traditional flows */
+        text-align: center;
+        
+        /* COMPACT & BALANCED */
+        letter-spacing: 0.1em; 
+        text-indent: 0.1em; /* KEY: Offsets the letter-spacing of the last letter so it's perfectly centered */
+        
+        white-space: nowrap;
+        
+        /* LAG-FREE ENGINE */
+        will-change: transform;
+        transform: translateZ(0);
+    }
+
+
+    .works-section {
+        /* Set height to auto so cards move together when scrolling */
+        height: auto !important; 
+        padding: 4rem 1rem;
+        overflow: visible;
+        background-color: #000;
+    }
+    .works-header {
+        position: relative;
+        height: auto;
+        padding-bottom: 3rem;
+    }
+    /* Remove Sticky Stacking for Mobile */
+    .gallery-container {
+        display: flex;
+        flex-direction: column;
+        gap: 3rem; /* Space between cards */
+        padding: 0;
+        max-width: 100%;
+    }
+    .work-card-wrapper {
+        position: relative !important; /* Disables the 'sticky' overlap */
+        top: auto !important;
+        height: auto !important;
+        padding-top: 0;
+    }
+    .work-card {
+        height: auto; /* Allow content to define height */
+        padding: 0; /* Remove padding to let image fill edge-to-edge if desired */
+        background-color: #111;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        box-shadow: none;
+    }
+    .preview-grid {
+        height: auto;
+        margin-bottom: 0;
+        gap: 0;
+    }
+    /* INCREASED SCOPE: Desktop hidden, Mobile Portrait expanded */
+
+    .view-pc {
+        display: none !important;
+    }
+    .view-mobile {
+        flex: 1; /* Take full width of the card */
+        width: 100%;
+        height: auto;
+        border: none; /* Remove the phone frame effect for cleaner look */
+        border-radius: 0;
+    }
+    .view-mobile img {
+        width: 100%;
+        height: auto;
+        aspect-ratio: 9 / 16;
+        object-fit: cover;
+        /* Remove any dimmed pane effects */
+        filter: none !important; 
+        opacity: 1 !important;
+    }
+    /* REMOVE "MOBILE" LABEL */
+    .view-label {
+        display: none !important;
+    }
+    /* CARD CONTENT REFINEMENT */
+    .card-content {
+        padding: 1.5rem;
+        /* Remove the gradient that dims the bottom of the image */
+        background: #111; 
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        justify-content: flex-start;
+        align-items: center;
+    }
+    .card-text h2 {
+        font-size: 1.4rem;
+        letter-spacing: 2px;
+    }
+    .card-text span {
+        font-size: 1rem;
+        margin-right: 10px;
+    }
 }

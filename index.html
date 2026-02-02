@@ -11,15 +11,31 @@
 </head>
 <body>
 
-    <header class="transparent-header">
+    <div class="nav-overlay" id="navOverlay">
+    <ul class="nav-links">
+        <li><a href="#" onclick="toggleMenu()">HOME</a></li>
+        <li><a href=".about-me" onclick="toggleMenu()">ABOUT</a></li>
+        <li><a href=".works-section" onclick="toggleMenu()">WORKS</a></li>
+        <li><a href=".tech-stack-section" onclick="toggleMenu()">TECH STACK</a></li>
+        <li><a href="#contact" onclick="toggleMenu()">CONTACT</a></li>
+    </ul>
+</div>
+
+<header class="transparent-header">
     <div class="header-container">
         <div class="logo-area">
             <img src="assets/img/JMT1.png" alt="Logo" class="logo">
             <span class="name">JADE MANCIO</span>
         </div>
-        <a href="#contact" class="contact-btn">CONTACT</a>
+
+        <a href="#contact" class="contact-btn desktop-only">CONTACT</a>
+        
+        <div class="burger-menu" id="burgerIcon" onclick="toggleMenu()">
+            <span></span>
+            <span></span>
+        </div>
     </div>
-    </header>
+</header>
 
     <section class="hero">
     <canvas id="hero-bg"></canvas>
@@ -64,37 +80,93 @@
     <div class="gallery-container">
         <div class="work-card-wrapper">
             <div class="work-card">
+                <div class="preview-grid">
+                    <div class="view-pc">
+                        <img src="assets/img/1.png" alt="Project Desktop View">
+                        <div class="view-label">DESKTOP</div>
+                    </div>
+                    <div class="view-mobile">
+                        <img src="assets/img/1.1.png" alt="Project Mobile View">
+                        <div class="view-label">MOBILE</div>
+                    </div>
+                </div>
+                
                 <div class="card-content">
-                    <span>01</span>
-                    <h2>PROJECT TITLE</h2>
+                    <div class="card-text">
+                        <span>01</span>
+                        <h2>PROJECT TITLE</h2>
+                    </div>
                 </div>
             </div>
         </div>
+        
         <div class="work-card-wrapper">
             <div class="work-card">
+                <div class="preview-grid">
+                    <div class="view-pc">
+                        <img src="assets/img/2.png" alt="Project Desktop View">
+                        <div class="view-label">DESKTOP</div>
+                    </div>
+                    <div class="view-mobile">
+                        <img src="assets/img/2.2.png" alt="Project Mobile View">
+                        <div class="view-label">MOBILE</div>
+                    </div>
+                </div>
+                
                 <div class="card-content">
-                    <span>02</span>
-                    <h2>PROJECT TITLE</h2>
+                    <div class="card-text">
+                        <span>02</span>
+                        <h2>PROJECT TITLE</h2>
+                    </div>
                 </div>
             </div>
         </div>
+
         <div class="work-card-wrapper">
             <div class="work-card">
+                <div class="preview-grid">
+                    <div class="view-pc">
+                        <img src="assets/img/3.png" alt="Project Desktop View">
+                        <div class="view-label">DESKTOP</div>
+                    </div>
+                    <div class="view-mobile">
+                        <img src="assets/img/3.3.png" alt="Project Mobile View">
+                        <div class="view-label">MOBILE</div>
+                    </div>
+                </div>
+                
                 <div class="card-content">
-                    <span>03</span>
-                    <h2>PROJECT TITLE</h2>
+                    <div class="card-text">
+                        <span>03</span>
+                        <h2>PROJECT TITLE</h2>
+                    </div>
                 </div>
             </div>
         </div>
+
         <div class="work-card-wrapper">
             <div class="work-card">
+                <div class="preview-grid">
+                    <div class="view-pc">
+                        <img src="assets/img/4.png" alt="Project Desktop View">
+                        <div class="view-label">DESKTOP</div>
+                    </div>
+                    <div class="view-mobile">
+                        <img src="mobile-screenshot1.jpg" alt="Project Mobile View">
+                        <div class="view-label">MOBILE</div>
+                    </div>
+                </div>
+                
                 <div class="card-content">
-                    <span>04</span>
-                    <h2>PROJECT TITLE</h2>
+                    <div class="card-text">
+                        <span>04</span>
+                        <h2>PROJECT TITLE</h2>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+
+        </div>
 </section>
 
 <section class="tech-stack-section">
@@ -302,6 +374,22 @@
             // No e.preventDefault() here so page moves immediately
         }
     }, { passive: false });
+
+    function toggleMenu() {
+    const menu = document.getElementById('navOverlay');
+    const burger = document.querySelector('.burger-menu');
+    
+    menu.classList.toggle('active');
+    burger.classList.toggle('active');
+
+    // Prevent scrolling when menu is open
+    if (menu.classList.contains('active')) {
+        document.body.style.overflow = 'hidden';
+    } else {
+        document.body.style.overflow = 'auto';
+    }
+}
+
 </script>
 <script src="assets/js/main.js"></script>
 

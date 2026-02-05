@@ -29,8 +29,8 @@ function initStarfield() {
     sCtx.fill();
 
     // 3. SETTINGS & STATE
-    let mouseX = 0, mouseY = 0;
-    let targetMouseX = 0, targetMouseY = 0;
+    // Set to 0 to keep the starfield centered
+    let mouseX = 0, mouseY = 0; 
     const speed = 3;
     const stars = [];
     const particleCount = 400;
@@ -41,10 +41,8 @@ function initStarfield() {
     }
 
     window.addEventListener("resize", resize);
-    window.addEventListener("mousemove", (e) => {
-        targetMouseX = (e.clientX - window.innerWidth / 2) * 0.5;
-        targetMouseY = (e.clientY - window.innerHeight / 2) * 0.5;
-    });
+    
+    // Removed the "mousemove" listener to prevent the "dizzy" tilting effect.
 
     resize();
 
@@ -60,9 +58,7 @@ function initStarfield() {
 
     // 4. THE ANIMATION LOOP
     function animate() {
-        mouseX += (targetMouseX - mouseX) * 0.05;
-        mouseY += (targetMouseY - mouseY) * 0.05;
-
+        // No longer updating mouseX/mouseY based on targetMouse
         bgCtx.fillStyle = "#000";
         bgCtx.fillRect(0, 0, bgCanvas.width, bgCanvas.height);
 
@@ -81,6 +77,7 @@ function initStarfield() {
             }
 
             const scale = 800 / s.z;
+            // The "mouseX" and "mouseY" are now constant at 0
             const x = centerX + (s.x + mouseX) * scale;
             const y = centerY + (s.y + mouseY) * scale;
 

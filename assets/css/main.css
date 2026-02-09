@@ -1209,7 +1209,7 @@ work-card:hover img {
         height: 90vh; 
         width: 100vw;
         background-color: #111;
-        border: 1px solid rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.719);
         border-radius: 20px;
         overflow: hidden;
         box-shadow: 0 -10px 30px rgba(0,0,0,0.5);
@@ -1243,7 +1243,7 @@ work-card:hover img {
     position: relative;
     background: #000;
     transform: translateZ(0);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.719);
 }
 
 .view-mobile img {
@@ -1268,12 +1268,12 @@ work-card:hover img {
     /* Mas maliit na height para sa text */
     height: 12%; 
     padding: 0 1.5rem;
-    background: #111;
+    background: #535353;
     display: flex;
     justify-content: flex-start;
     align-items: center;
     z-index: 10; 
-    border-top: 1px solid rgba(255, 255, 255, 0.03);
+    
 }
 
 .card-text {
@@ -1316,24 +1316,44 @@ work-card:hover img {
         align-items: center;
     }
 
-    /* Scaling the Neumorphic Icon */
-    .tech-icon-circle {
-        width: 60px;
-        height: 60px;
-    }
+    /* --- Optimized Tech Icon for Mobile --- */
+.tech-icon-circle {
+    width: 60px;
+    height: 60px;
+    /* Hardware acceleration */
+    transform: translateZ(0); 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 
-    .icon-inner {
-        width: 46px;
-        height: 46px;
-        /* Reduce shadow spread for smaller scale to keep it crisp */
-        box-shadow: inset 2px 2px 4px #777, 
-                    inset -2px -2px 4px #777;
-    }
+.icon-inner {
+    width: 46px;
+    height: 46px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%; /* Ensure this is set for circles */
+    
+    /* OPTIMIZATION: 
+       Reduced shadow complexity. Using rgba for better 
+       blending and a single composite shadow. 
+    */
+    box-shadow: inset 2px 2px 5px rgba(0, 0, 0, 0.15), 
+                inset -2px -2px 5px rgba(255, 255, 255, 0.05);
+    
+    /* Promotes the element to its own GPU layer */
+    will-change: transform;
+}
 
-    .icon-inner img {
-        max-width: 22px;
-        max-height: 22px;
-    }
+.icon-inner img {
+    /* Use 'contain' to ensure images don't cause layout shifts */
+    width: 22px;
+    height: 22px;
+    object-fit: contain;
+    /* Prevent image dragging/selection lag */
+    pointer-events: none;
+}
 
     /* Progress Info Adjustments */
     .skill-label {

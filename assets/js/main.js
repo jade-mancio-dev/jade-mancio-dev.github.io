@@ -4,7 +4,7 @@ const bgCtx = bgCanvas.getContext("2d", { alpha: false });
 // 1. MOBILE GUARD
 const isMobile = window.innerWidth < 768;
 
-// If mobile, we stop here. 
+// Animation will stop in mobile. 
 // You can also add a class to the body to show a static CSS star background instead.
 if (isMobile) {
     bgCanvas.style.display = 'none'; 
@@ -12,7 +12,6 @@ if (isMobile) {
 } else {
     initStarfield();
 }
-
 function initStarfield() {
     // 2. BUFFERED STAR
     const starCache = document.createElement('canvas');

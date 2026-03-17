@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jade Mancio | Portfolio</title>
+    <link rel="icon" type="image/png" href="assets/img/JMT1.png">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/main.css">
+</head>
+<body>
+
+    <div class="nav-overlay" id="navOverlay">
+    <ul class="nav-links">
+        <li><a href="#" onclick="toggleMenu()">HOME</a></li>
+        <li><a href="#about" onclick="toggleMenu()">ABOUT</a></li>
+        <li><a href="#works" onclick="toggleMenu()">WORKS</a></li>
+        <li><a href="#tech" onclick="toggleMenu()">TECH STACK</a></li>
+    </ul>
+
+    <div class="nav-footer">
+        <i class="fa-regular fa-envelope"></i>
+        <div class="nav-footer-text">
+            <span>Direct email</span>
+            <a href="mailto:jade28.mancio@gmail.com">jade28.mancio@gmail.com</a>
+        </div>
+    </div>
+</div>
+
+<header class="transparent-header">
+    <div class="header-container">
+        <div class="logo-area">
+            <img src="assets/img/JMT1.png" alt="Logo" class="logo">
+            <span class="name">JADE MANCIO</span>
+        </div>
+
+        <a href="#contact" class="contact-btn desktop-only">CONTACT</a>
+        
+        <div class="burger-menu" id="burgerIcon" onclick="toggleMenu()">
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+</header>
+
+    <section class="hero">
+    <video autoplay loop muted playsinline id="hero-bg">
+        <source src="assets/video/blackhole.webm" type="video/webm">
+    </video>
+
+    <div class="hero-content">
+        <div class="hero-text-wrapper">
+            <h1 class="main-title">HI I'M JADE</h1>
+            <h3 class="sub-title">UI & UX DESIGNER</h3>
+        </div>
+    </div>
+
+    <div class="stats-bar">
+        <div class="stat-item">PROJECTS <strong>4</strong></div>
+        <div class="stat-item">CLIENTS <strong>3</strong></div>
+        <div class="stat-item">SATISFACTION <strong>80%</strong></div>
+        <div class="stat-item">EXPERIENCE <strong>1 YEAR</strong></div>
+    </div>
+</section>
+
+    <section id="about" class="about-me">
+    <div class="about-container">
+        <div class="about-text">
+            <h2 class="about-header">ABOUT ME</h2>
+            <p class="about-paragraph">
+                I’m Jade Mancio, a dedicated Front-End Developer focused on creating intuitive, performant, and visually engaging web interfaces that users love.
+            </p>
+            <p class="about-paragraph">
+                I focus on creating responsive, visually engaging, and user-centered digital experiences that balance performance with aesthetics.
+            </p>
+        </div>
+        <div class="about-image-wrapper">
+            <img src="assets/img/jade.png" alt="Jade Mancio" class="about-img">
+        </div>
+    </div>
+</section>
+
+<section id="works" class="works-section">
+    <div class="works-header">
+        <h1 class="orbitron-header">MY WORKS</h1>
+    </div>
+
+    <div class="gallery-container">
+        <div class="work-card-wrapper">
+            <div class="work-card">
+                <div class="preview-grid">
+                    <div class="view-pc">
+                        <img src="assets/img/1.png" alt="Project Desktop View">
+                        <div class="view-label">DESKTOP</div>
+                    </div>
+                    <div class="view-mobile">
+                        <img src="assets/img/1.1.png" alt="Project Mobile View">
+                        <div class="view-label">MOBILE</div>
+                    </div>
+                </div>
+                
+                <div class="card-content">
+                    <div class="card-text">
+                        <span>01</span>
+                        <h2>Chemsaga</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="work-card-wrapper">
+            <div class="work-card">
+                <div class="preview-grid">
+                    <div class="view-pc">
+                        <img src="assets/img/2.png" alt="Project Desktop View">
+                        <div class="view-label">DESKTOP</div>
+                    </div>
+                    <div class="view-mobile">
+                        <img src="assets/img/2.2.png" alt="Project Mobile View">
+                        <div class="view-label">MOBILE</div>
+                    </div>
+                </div>
+                
+                <div class="card-content">
+                    <div class="card-text">
+                        <span>02</span>
+                        <h2>Portfolio</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="work-card-wrapper">
+            <div class="work-card">
+                <div class="preview-grid">
+                    <div class="view-pc">
+                        <img src="assets/img/3.png" alt="Project Desktop View">
+                        <div class="view-label">DESKTOP</div>
+                    </div>
+                    <div class="view-mobile">
+                        <img src="assets/img/3.3.png" alt="Project Mobile View">
+                        <div class="view-label">MOBILE</div>
+                    </div>
+                </div>
+                
+                <div class="card-content">
+                    <div class="card-text">
+                        <span>03</span>
+                        <h2>Portfolio</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="work-card-wrapper">
+            <div class="work-card">
+                <div class="preview-grid">
+                    <div class="view-pc">
+                        <img src="assets/img/4.png" alt="Project Desktop View">
+                        <div class="view-label">DESKTOP</div>
+                    </div>
+                    <div class="view-mobile">
+                        <img src="mobile-screenshot1.jpg" alt="Project Mobile View">
+                        <div class="view-label">MOBILE</div>
+                    </div>
+                </div>
+                
+                <div class="card-content">
+                    <div class="card-text">
+                        <span>04</span>
+                        <h2>Portfolio</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        </div>
+</section>
+
+<section id="tech" class="tech-stack-section">
+  <div class="tech-container">
+    <h2 class="tech-header">TECH STACK</h2>
+
+    <div class="skills-grid">
+      <div class="skill-row">
+        <div class="tech-icon-circle">
+          <div class="icon-inner">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/HTML5_Badge.svg/600px-HTML5_Badge.svg.png" alt="HTML">
+          </div>
+        </div>
+        <div class="skill-info">
+          <div class="skill-label">
+            <span>HTML5</span>
+            <span>50%</span>
+          </div>
+          <div class="progress-bar-bg">
+            <div class="progress-fill html-fill"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="skill-row">
+        <div class="tech-icon-circle">
+          <div class="icon-inner">
+            <img src="https://www.vnurture.in/wp-content/uploads/2019/09/CSS3-Mark-Shape-Cut.png" alt="CSS">
+          </div>
+        </div>
+        <div class="skill-info">
+          <div class="skill-label">
+            <span>CSS3</span>
+            <span>50%</span>
+          </div>
+          <div class="progress-bar-bg">
+            <div class="progress-fill css-fill"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="skill-row">
+        <div class="tech-icon-circle">
+          <div class="icon-inner">
+            <img src="https://res.cloudinary.com/dhktoeo0l/image/upload/v1606668363/IMG_20201129_221445_ahqtuc.png" alt="JS">
+          </div>
+        </div>
+        <div class="skill-info">
+          <div class="skill-label">
+            <span>JavaScript</span>
+            <span>30%</span>
+          </div>
+          <div class="progress-bar-bg">
+            <div class="progress-fill js-fill"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="skill-row">
+        <div class="tech-icon-circle">
+          <div class="icon-inner">
+            <img src="https://cdn.worldvectorlogo.com/logos/nodejs-icon.svg" alt="NodeJS">
+          </div>
+        </div>
+        <div class="skill-info">
+          <div class="skill-label">
+            <span>Node.js</span>
+            <span>20%</span>
+          </div>
+          <div class="progress-bar-bg">
+            <div class="progress-fill node-fill"></div>
+          </div>
+        </div>
+        
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="contact-section">
+  <div class="contact-container">
+    
+    <div class="contact-left">
+      <form action="https://api.web3forms.com/submit" method="POST" class="contact-form">
+        <input type="hidden" name="access_key" value="c0d08549-83d7-4cc0-be6a-347753702e2f">
+
+        <div class="input-group">
+          <label>NAME</label>
+          <input type="text" name="name" placeholder="Enter your name" required />
+          <span class="focus-border"></span>
+        </div>
+
+        <div class="input-group">
+          <label>EMAIL ADDRESS</label>
+          <input type="email" name="email" placeholder="Enter your business email" required />
+          <span class="focus-border"></span>
+        </div>
+
+        <div class="input-group">
+          <label>MESSAGE</label>
+          <textarea name="message" placeholder="Tell me about your project" rows="4" required></textarea>
+          <span class="focus-border"></span>
+        </div>
+
+        <button type="submit" class="contact-send-btn">
+          SEND MESSAGE
+        </button>
+      </form>
+    </div>
+
+    <div class="contact-right">
+      <div class="text-wrapper">
+        <div class="availability-tag">
+          <span class="dot"></span> AVAILABLE FOR NEW PROJECTS
+        </div>
+        <h1 class="contact-header">LET'S <span class="mobile-hide-br"><br></span> CONNECT</h1>
+        <p class="contact-subtext">
+          Bringing your vision to life through elegant, high-performance digital solutions.
+        </p>
+      </div>
+
+      <div class="contact-info-footer">
+        <span class="direct-label">DIRECT EMAIL</span>
+        <a href="mailto:jade28.mancio@gmail.com" class="contact-email-link">
+          <i class="fa-solid fa-envelope"></i> 
+          <span>jade28.mancio@gmail.com</span>
+        </a>
+      </div>
+    </div>
+
+  </div>
+
+  <footer class="contact-footer">
+  <p>© 2026 JADE MANCIO <span class="separator">|</span> ALL RIGHTS RESERVED</p>
+</footer>
+</section>
+<script>
+    const header = document.querySelector('.transparent-header');
+    let lastScrollY = window.scrollY;
+
+    function revealHeader() {
+        if (header.classList.contains('is-hidden')) {
+            header.classList.remove('is-hidden');
+        }
+    }
+
+    function hideHeader() {
+        if (!header.classList.contains('is-hidden')) {
+            header.classList.add('is-hidden');
+        }
+    }
+
+    window.addEventListener('scroll', () => {
+        const currentScrollY = window.scrollY;
+        
+        if (currentScrollY > lastScrollY && currentScrollY > 80) {
+            // Scrolling down
+            hideHeader();
+        } else if (currentScrollY < lastScrollY) {
+            // Scrolling up
+            revealHeader();
+        }
+        
+        lastScrollY = currentScrollY <= 0 ? 0 : currentScrollY; // For Mobile or negative scrolling
+    }, { passive: true });
+
+    function toggleMenu() {
+        const menu = document.getElementById('navOverlay');
+        const burger = document.querySelector('.burger-menu');
+        
+        menu.classList.toggle('active');
+        burger.classList.toggle('active');
+
+        // Prevent scrolling when menu is open
+        if (menu.classList.contains('active')) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = '';
+        }
+    }
+
+    // Contact Button Desktop Logic
+    const contactBtn = document.querySelector('.contact-btn');
+    if (contactBtn) {
+        contactBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            // Scroll to the very bottom of the page using Lenis
+            if (typeof lenis !== 'undefined') {
+                lenis.scrollTo(document.documentElement.scrollHeight);
+            } else {
+                window.scrollTo({
+                    top: document.documentElement.scrollHeight,
+                    behavior: 'smooth'
+                });
+            }
+        });
+    }
+</script>
+
+<!-- Lenis Smooth Scroll -->
+<script src="https://unpkg.com/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+<script src="assets/js/main.js"></script>
+
+</body>
+</html>

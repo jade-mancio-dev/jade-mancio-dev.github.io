@@ -13,20 +13,25 @@
 }
 
 /* Lenis smooth scroll basic styles */
-html.lenis, html.lenis body {
-  height: auto;
+html.lenis,
+html.lenis body {
+    height: auto;
 }
+
 .lenis.lenis-smooth {
-  scroll-behavior: auto !important;
+    scroll-behavior: auto !important;
 }
+
 .lenis.lenis-smooth [data-lenis-prevent] {
-  overscroll-behavior: contain;
+    overscroll-behavior: contain;
 }
+
 .lenis.lenis-stopped {
-  overflow: hidden;
+    overflow: hidden;
 }
+
 .lenis.lenis-scrolling iframe {
-  pointer-events: none;
+    pointer-events: none;
 }
 
 body {
@@ -385,15 +390,171 @@ body {
     justify-content: flex-end;
 }
 
-.about-img {
-    width: 100%;
-    max-width: 500px;
-    aspect-ratio: 1 / 1;
-    object-fit: cover;
-    border-radius: 50%;
-    box-shadow: 20px 20px 60px #bebebe, -20px -20px 60px #ffffff;
+/* Card center wrapper */
+.card-wrapper {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* Increase the overall size by scaling it */
+    transform: scale(1.4) translateZ(0);
+    transform-origin: center right;
+    /* Scale from the right to avoid bleeding into text */
+    margin-right: 20px;
     will-change: transform;
-    transition: scale(1.2);
+}
+
+/* ── Hex frame ── */
+.hex-outer {
+    position: relative;
+    width: 350px;
+    height: 350px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* SVG hexagon layers rendered as clip + borders */
+.hex-stage {
+    position: relative;
+    width: 350px;
+    height: 350px;
+    transform: rotate(0deg) translateZ(0);
+    /* Hardware acceleration */
+    will-change: transform;
+}
+
+/* Shadow base */
+.hex-shadow {
+    position: absolute;
+    inset: 0;
+    clip-path: polygon(50% 0%, 93% 25%, 93% 75%, 50% 100%, 7% 75%, 7% 25%);
+    background: #000;
+    transform: translateY(14px) translateX(8px) skewX(-3deg) translateZ(0);
+    filter: blur(18px);
+    opacity: 0.85;
+    will-change: transform, opacity;
+}
+
+/* Outermost chrome border */
+.hex-chrome-outer {
+    position: absolute;
+    inset: 0;
+    clip-path: polygon(50% 0%, 93% 25%, 93% 75%, 50% 100%, 7% 75%, 7% 25%);
+    background: linear-gradient(135deg,
+            #ffffff 0%,
+            #d0d0d0 15%,
+            #888 30%,
+            #1a1a1a 50%,
+            #888 70%,
+            #c0c0c0 85%,
+            #ffffff 100%);
+}
+
+/* Black inset bevel */
+.hex-black {
+    position: absolute;
+    inset: 8px;
+    clip-path: polygon(50% 0%, 93% 25%, 93% 75%, 50% 100%, 7% 75%, 7% 25%);
+    background: linear-gradient(145deg, #2a2a2a 0%, #111 40%, #1e1e1e 100%);
+}
+
+/* Inner silver rim */
+.hex-silver {
+    position: absolute;
+    inset: 16px;
+    clip-path: polygon(50% 0%, 93% 25%, 93% 75%, 50% 100%, 7% 75%, 7% 25%);
+    background: linear-gradient(135deg,
+            #ffffff 0%,
+            #e0e0e0 20%,
+            #aaa 40%,
+            #777 60%,
+            #ccc 80%,
+            #fff 100%);
+}
+
+/* Checkerboard image area */
+.hex-image {
+    position: absolute;
+    inset: 24px;
+    clip-path: polygon(50% 0%, 93% 25%, 93% 75%, 50% 100%, 7% 75%, 7% 25%);
+    background-color: #d8d8d8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+/* Slight gloss on image area */
+.hex-image::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    clip-path: polygon(50% 0%, 93% 25%, 93% 75%, 50% 100%, 7% 75%, 7% 25%);
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.25) 0%, transparent 50%);
+    pointer-events: none;
+}
+
+/* Threads badge */
+.threads-badge {
+    position: absolute;
+    bottom: -18px;
+    left: 50%;
+    transform: translateX(-50%) translateZ(0);
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 35% 30%, #555 0%, #222 50%, #111 100%);
+    box-shadow:
+        0 4px 20px rgba(0, 0, 0, 0.8),
+        inset 0 1px 3px rgba(255, 255, 255, 0.3),
+        inset 0 -2px 4px rgba(0, 0, 0, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    border: 2px solid #3a3a3a;
+    will-change: transform;
+}
+
+.threads-badge svg {
+    width: 26px;
+    height: 26px;
+    filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.8));
+}
+
+/* Username bar */
+.username-bar {
+    margin-top: 36px;
+    position: relative;
+    width: 250px;
+    transform: translateZ(0);
+    /* Hardware acceleration */
+    will-change: transform;
+}
+
+.username-bar-outer {
+    background: linear-gradient(135deg, #e8e8e8 0%, #c0c0c0 30%, #fff 50%, #aaa 70%, #ddd 100%);
+    border-radius: 50px;
+    padding: 3px;
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.7), 0 2px 8px rgba(0, 0, 0, 0.5);
+}
+
+.username-bar-inner {
+    background: linear-gradient(135deg, #1a1a1a 0%, #111 50%, #222 100%);
+    border-radius: 48px;
+    padding: 12px 28px;
+    text-align: center;
+}
+
+.username-text {
+    font-family: 'Sora', sans-serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: #ffffff;
+    letter-spacing: 0.02em;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
 }
 
 /* --- 3. Works Section --- */
@@ -422,7 +583,7 @@ body {
 
 .orbitron-header {
     font-size: clamp(3rem, 7vw, 5rem);
-    color: var(--text-white);
+    color: #ffffff;
     letter-spacing: 1.2rem;
     text-align: center;
     margin: 0;
@@ -469,13 +630,12 @@ body {
 .work-card {
     width: 100%;
     height: 75vh;
-    background-color: #111111;
-    border: 1px solid #ffffff;
+    background-color: #ffffff;
+    border: 2px solid #ae00ff;
     border-radius: 25px;
     display: flex;
     flex-direction: column;
     padding: 2rem;
-    box-shadow: 0 -20px 50px rgba(0, 0, 0, 0.8);
     overflow: hidden;
     position: relative;
 }
@@ -531,7 +691,7 @@ work-card:hover img {
     position: absolute;
     bottom: 10px;
     right: 10px;
-    background: rgba(0, 0, 0, 0.7);
+    background: rgba(0, 0, 0, 0.186);
     color: #fff;
     padding: 4px 10px;
     font-size: 0.7rem;
@@ -555,7 +715,7 @@ work-card:hover img {
 }
 
 .card-text h2 {
-    color: #fff;
+    color: #000000;
     font-size: 2rem;
     margin: 0;
     letter-spacing: 3px;
@@ -1298,16 +1458,16 @@ work-card:hover img {
         width: 100%;
         display: flex;
         justify-content: center;
+        /* Prevent horizontal overflow from scaled card */
+        overflow: hidden;
+        padding-top: 20px;
     }
 
-    .about-img {
-        max-width: 220px;
-        /* Kept compact to save vertical space */
-        height: auto;
-        border-radius: 50%;
-        /* Make into a complete circle */
-        /* Slight shadow for depth without lag */
-        filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.1));
+    .card-wrapper {
+        /* Scale down the entire hex card for mobile while maintaining proportions */
+        transform: scale(0.85) translateZ(0);
+        transform-origin: center center;
+        margin-right: 0;
     }
 
     /* Typography Refinement */
@@ -1427,8 +1587,8 @@ work-card:hover img {
     .work-card {
         height: 85vh;
         width: 100vw;
-        background-color: #111;
-        border: 1px solid rgba(255, 255, 255, 0.719);
+        background-color: #ffffff;
+        border: 1px solid rgba(162, 0, 255, 0.719);
         border-radius: 20px;
         overflow: hidden;
         box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.5);

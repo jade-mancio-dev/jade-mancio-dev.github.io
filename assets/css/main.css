@@ -1,7 +1,7 @@
 :root {
     --bg-black: #000000;
     --glass-bg: rgba(255, 255, 255, 0.05);
-    --glass-border: rgba(255, 255, 255, 0.1);
+    --glass-border: rgb(255, 0, 0);
     --text-white: #ffffff;
     --font-main: 'Orbitron', sans-serif;
 }
@@ -171,23 +171,6 @@ body {
     transform: scale(0.96);
 }
 
-#hero-bg {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    z-index: -1;
-    /* Sits behind the hero content */
-    pointer-events: none;
-    background: #000;
-    /* Hardware acceleration to prevent scroll lag */
-    transform: translateZ(0);
-    will-change: transform;
-    backface-visibility: hidden;
-}
-
 /*1. Hero Section */
 .hero {
     height: 100vh;
@@ -197,8 +180,6 @@ body {
     align-items: center;
     padding: 0 4rem;
     text-align: center;
-
-    /* --- MGA DINAGDAG/INAYOS --- */
     position: relative;
     z-index: 10;
     background-color: transparent;
@@ -225,10 +206,8 @@ body {
 .sub-title {
     font-size: clamp(1rem, 3vw, 2rem);
     font-weight: 400;
-    background: linear-gradient(135deg, #bf00ff, #000000);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    color: #ffffff;
+    -webkit-text-stroke: 0.5px rgb(0, 0, 0);
     letter-spacing: 8px;
 
     /* Reveal Animation Settings */
@@ -432,8 +411,9 @@ body {
     inset: 0;
     clip-path: polygon(50% 0%, 93% 25%, 93% 75%, 50% 100%, 7% 75%, 7% 25%);
     background: #000;
-    transform: translateY(14px) translateX(8px) skewX(-3deg) translateZ(0);
-    filter: blur(8px); /* Reduced blur complexity */
+    transform: translateY(14px) translateX(8px) translateZ(0);
+    filter: blur(8px);
+    /* Reduced blur complexity */
     opacity: 0.6;
     will-change: transform;
     backface-visibility: hidden;
@@ -508,8 +488,10 @@ body {
     width: 48px;
     height: 48px;
     border-radius: 50%;
-    background: #222; /* Simplified gradient */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6); /* Simplified shadow */
+    background: #222;
+    /* Simplified gradient */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
+    /* Simplified shadow */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -539,7 +521,8 @@ body {
     background: linear-gradient(135deg, #e8e8e8 0%, #c0c0c0 30%, #fff 50%, #aaa 70%, #ddd 100%);
     border-radius: 50px;
     padding: 3px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5); /* Simplified shadow */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+    /* Simplified shadow */
 }
 
 .username-bar-inner {
@@ -1372,7 +1355,7 @@ work-card:hover img {
         padding-right: 15px;
         text-align: right;
         /* ONLY APPLY THE CENTER LINE HERE */
-        border-right: 1px solid rgba(255, 255, 255, 0.3) !important;
+        border-right: 2px solid rgb(255, 255, 255) !important;
     }
 
     /* Right Column: Anchored to the Center Spine */
@@ -1401,7 +1384,7 @@ work-card:hover img {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.95);
+    background: rgba(255, 0, 0, 0.95);
     z-index: 2000;
     display: flex;
     justify-content: center;
@@ -1485,7 +1468,7 @@ work-card:hover img {
         /* Significantly reduce blur computation on mobile */
         filter: blur(4px);
         opacity: 0.5;
-        transform: translateY(8px) translateX(4px) skewX(-2deg) translateZ(0);
+        transform: translateY(8px) translateX(4px) translateZ(0);
     }
 
     .threads-badge {

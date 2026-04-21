@@ -7,13 +7,24 @@
   <title>Jade Mancio | Portfolio</title>
   <link rel="icon" type="image/png" href="assets/img/JMT1.png">
   <link
-    href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Orbitron:wght@400;700;900&family=Sora:wght@400;600;700;800&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@400;500&family=Orbitron:wght@400;700;900&family=Sora:wght@400;600;700;800&family=Inter:wght@300;400;500;600&display=swap"
     rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="assets/css/main.css">
 </head>
 
 <body>
+
+  <!-- ═══════════ PRELOADER ═══════════ -->
+  <div id="preloader" class="preloader">
+    <div class="preloader-inner">
+      <div class="loading-bar-container">
+        <div class="loading-bar"></div>
+      </div>
+      <img src="assets/img/JMT1.png" alt="Jade Mancio Logo" class="preloader-logo">
+    </div>
+  </div>
+  <!-- ═══════════════════════════════════ -->
 
   <div class="nav-overlay" id="navOverlay">
     <ul class="nav-links">
@@ -32,6 +43,70 @@
     </div>
   </div>
 
+  <!-- ═══════════ CONTACT SLIDE PANEL (Desktop Only) ═══════════ -->
+  <div id="contactPanelBackdrop" class="contact-panel-backdrop" onclick="closeContactPanel()"></div>
+
+  <div id="contactPanel" class="contact-slide-panel">
+    <!-- Close Button -->
+    <button class="contact-panel-close" id="contactPanelClose" onclick="closeContactPanel()"
+      aria-label="Close contact panel">
+      <span>&times;</span>
+    </button>
+
+    <div class="contact-panel-inner">
+      <!-- Left: Form -->
+      <div class="contact-left">
+        <form action="https://api.web3forms.com/submit" method="POST" class="contact-form">
+          <input type="hidden" name="access_key" value="c0d08549-83d7-4cc0-be6a-347753702e2f">
+
+          <div class="input-group">
+            <label>NAME</label>
+            <input type="text" name="name" placeholder="Enter your name" required />
+            <span class="focus-border"></span>
+          </div>
+
+          <div class="input-group">
+            <label>EMAIL ADDRESS</label>
+            <input type="email" name="email" placeholder="Enter your business email" required />
+            <span class="focus-border"></span>
+          </div>
+
+          <div class="input-group">
+            <label>MESSAGE</label>
+            <textarea name="message" placeholder="Tell me about your project" rows="4" required></textarea>
+            <span class="focus-border"></span>
+          </div>
+
+          <button type="submit" class="contact-send-btn">
+            SEND MESSAGE
+          </button>
+        </form>
+      </div>
+
+      <!-- Right: Info -->
+      <div class="contact-right">
+        <div class="text-wrapper">
+          <div class="availability-tag">
+            <span class="dot"></span> AVAILABLE FOR NEW PROJECTS
+          </div>
+          <h1 class="contact-header">LET'S <br> CONNECT</h1>
+          <p class="contact-subtext">
+            Bringing your vision to life through elegant, high-performance digital solutions.
+          </p>
+        </div>
+
+        <div class="contact-info-footer">
+          <span class="direct-label">DIRECT EMAIL</span>
+          <a href="mailto:jade28.mancio@gmail.com" class="contact-email-link">
+            <i class="fa-solid fa-envelope"></i>
+            <span>jade28.mancio@gmail.com</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- ═══════════════════════════════════════════════════════════ -->
+
   <header class="transparent-header">
     <div class="header-container">
       <div class="logo-area">
@@ -39,7 +114,7 @@
         <span class="name">JADE MANCIO</span>
       </div>
 
-      <a href="#contact" class="contact-btn desktop-only">CONTACT</a>
+      <button id="contactModalBtn" class="contact-btn desktop-only" onclick="openContactPanel()">CONTACT</button>
 
       <div class="burger-menu" id="burgerIcon" onclick="toggleMenu()">
         <span></span>
@@ -53,7 +128,7 @@
     <div class="hero-content">
       <div class="hero-text-wrapper">
         <h1 class="main-title">HI I'M JADE</h1>
-        <h3 class="sub-title">UI & UX DESIGNER</h3>
+        <h3 class="sub-title">FULLSTACK DEVELOPER</h3>
       </div>
     </div>
 
@@ -116,106 +191,161 @@
   </section>
 
   <section id="works" class="works-section">
-    <div class="works-header">
-      <h1 class="orbitron-header" data-letter-rise>MY WORKS</h1>
+    <!-- ═══ UNIFIED SCROLL SCENE: Entrance + Gallery ═══ -->
+    <div id="works-scroll-scene">
+      <div id="works-sticky-stage">
+
+        <!-- ENTRANCE: TOP MARQUEE GROUP -->
+        <div id="works-group-top">
+          <div class="wm-row">
+            <div class="wm-inner" id="wt1">
+              <span>MY WORKS</span><span>——</span><span>SELECTED</span><span>——</span>
+              <span>MY WORKS</span><span>——</span><span>PORTFOLIO</span><span>——</span>
+              <span>MY WORKS</span><span>——</span><span>SELECTED</span><span>——</span>
+              <span>MY WORKS</span><span>——</span><span>PORTFOLIO</span><span>——</span>
+              <span>MY WORKS</span><span>——</span><span>SELECTED</span><span>——</span>
+            </div>
+          </div>
+          <div class="wm-row">
+            <div class="wm-inner wm-ghost" id="wt2">
+              <span>DESIGN</span><span>——</span><span>MY WORKS</span><span>——</span>
+              <span>CREATIVE</span><span>——</span><span>MY WORKS</span><span>——</span>
+              <span>DESIGN</span><span>——</span><span>MY WORKS</span><span>——</span>
+              <span>CREATIVE</span><span>——</span><span>MY WORKS</span><span>——</span>
+              <span>DESIGN</span><span>——</span><span>MY WORKS</span><span>——</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- ENTRANCE: CENTER TITLE -->
+        <div id="works-title-wrap">
+          <p class="works-eyebrow">PROJECTS</p>
+          <h1 class="works-entrance-title">MY WORKS</h1>
+        </div>
+
+        <!-- ENTRANCE: BOTTOM MARQUEE GROUP -->
+        <div id="works-group-bot">
+          <div class="wm-row">
+            <div class="wm-inner wm-ghost" id="wb1">
+              <span>MY WORKS</span><span>——</span><span>PROJECTS</span><span>——</span>
+              <span>MY WORKS</span><span>——</span><span>CRAFT</span><span>——</span>
+              <span>MY WORKS</span><span>——</span><span>PROJECTS</span><span>——</span>
+              <span>MY WORKS</span><span>——</span><span>CRAFT</span><span>——</span>
+              <span>MY WORKS</span><span>——</span><span>PROJECTS</span><span>——</span>
+            </div>
+          </div>
+          <div class="wm-row">
+            <div class="wm-inner" id="wb2">
+              <span>WORK</span><span>——</span><span>MY WORKS</span><span>——</span>
+              <span>STUDIO</span><span>——</span><span>MY WORKS</span><span>——</span>
+              <span>WORK</span><span>——</span><span>MY WORKS</span><span>——</span>
+              <span>STUDIO</span><span>——</span><span>MY WORKS</span><span>——</span>
+              <span>WORK</span><span>——</span><span>MY WORKS</span><span>——</span>
+            </div>
+          </div>
+        </div>
+
+        <div id="works-vignette"></div>
+        <div id="works-scroll-hint">
+          <span>Scroll</span>
+          <div class="ws-arrow"></div>
+        </div>
+
+        <!-- GALLERY CARDS (inside same sticky stage) -->
+        <div class="work-card-wrapper">
+          <div class="work-card">
+            <div class="preview-grid">
+              <div class="view-pc">
+                <img src="assets/img/1.png" alt="Project Desktop View">
+                <div class="view-label">DESKTOP</div>
+              </div>
+              <div class="view-mobile">
+                <img src="assets/img/1.1.png" alt="Project Mobile View">
+                <div class="view-label">MOBILE</div>
+              </div>
+            </div>
+            <div class="card-content">
+              <div class="card-text">
+                <span>01</span>
+                <h2>Chemsaga</h2>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="work-card-wrapper">
+          <div class="work-card">
+            <div class="preview-grid">
+              <div class="view-pc">
+                <img src="assets/img/2.png" alt="Project Desktop View">
+                <div class="view-label">DESKTOP</div>
+              </div>
+              <div class="view-mobile">
+                <img src="assets/img/2.2.png" alt="Project Mobile View">
+                <div class="view-label">MOBILE</div>
+              </div>
+            </div>
+            <div class="card-content">
+              <div class="card-text">
+                <span>02</span>
+                <h2>Portfolio</h2>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="work-card-wrapper">
+          <div class="work-card">
+            <div class="preview-grid">
+              <div class="view-pc">
+                <img src="assets/img/3.png" alt="Project Desktop View">
+                <div class="view-label">DESKTOP</div>
+              </div>
+              <div class="view-mobile">
+                <img src="assets/img/3.3.png" alt="Project Mobile View">
+                <div class="view-label">MOBILE</div>
+              </div>
+            </div>
+            <div class="card-content">
+              <div class="card-text">
+                <span>03</span>
+                <h2>Portfolio</h2>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="work-card-wrapper">
+          <div class="work-card">
+            <div class="preview-grid">
+              <div class="view-pc">
+                <img src="assets/img/4.png" alt="Project Desktop View">
+                <div class="view-label">DESKTOP</div>
+              </div>
+              <div class="view-mobile">
+                <img src="assets/img/4.2.png" alt="Project Mobile View">
+                <div class="view-label">MOBILE</div>
+              </div>
+            </div>
+            <div class="card-content">
+              <div class="card-text">
+                <span>04</span>
+                <h2>Portfolio</h2>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
     </div>
-
-    <div class="gallery-container">
-      <div class="work-card-wrapper">
-        <div class="work-card">
-          <div class="preview-grid">
-            <div class="view-pc">
-              <img src="assets/img/1.png" alt="Project Desktop View">
-              <div class="view-label">DESKTOP</div>
-            </div>
-            <div class="view-mobile">
-              <img src="assets/img/1.1.png" alt="Project Mobile View">
-              <div class="view-label">MOBILE</div>
-            </div>
-          </div>
-
-          <div class="card-content">
-            <div class="card-text">
-              <span>01</span>
-              <h2>Chemsaga</h2>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="work-card-wrapper">
-        <div class="work-card">
-          <div class="preview-grid">
-            <div class="view-pc">
-              <img src="assets/img/2.png" alt="Project Desktop View">
-              <div class="view-label">DESKTOP</div>
-            </div>
-            <div class="view-mobile">
-              <img src="assets/img/2.2.png" alt="Project Mobile View">
-              <div class="view-label">MOBILE</div>
-            </div>
-          </div>
-
-          <div class="card-content">
-            <div class="card-text">
-              <span>02</span>
-              <h2>Portfolio</h2>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="work-card-wrapper">
-        <div class="work-card">
-          <div class="preview-grid">
-            <div class="view-pc">
-              <img src="assets/img/3.png" alt="Project Desktop View">
-              <div class="view-label">DESKTOP</div>
-            </div>
-            <div class="view-mobile">
-              <img src="assets/img/3.3.png" alt="Project Mobile View">
-              <div class="view-label">MOBILE</div>
-            </div>
-          </div>
-
-          <div class="card-content">
-            <div class="card-text">
-              <span>03</span>
-              <h2>Portfolio</h2>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="work-card-wrapper">
-        <div class="work-card">
-          <div class="preview-grid">
-            <div class="view-pc">
-              <img src="assets/img/4.png" alt="Project Desktop View">
-              <div class="view-label">DESKTOP</div>
-            </div>
-            <div class="view-mobile">
-              <img src="assets/img/4.2.png" alt="Project Mobile View">
-              <div class="view-label">MOBILE</div>
-            </div>
-          </div>
-
-          <div class="card-content">
-            <div class="card-text">
-              <span>04</span>
-              <h2>Portfolio</h2>
-            </div>
-          </div>
-        </div>
-      </div>
-
-    </div>
+    <!-- ═══ END UNIFIED SCROLL SCENE ═══ -->
   </section>
 
   <section id="tech" class="tech-stack-section">
     <div class="tech-container">
       <h2 class="tech-header" data-letter-rise>TECH STACK</h2>
-      <p class="tech-sub" data-rise>Languages, frameworks, and tools I use to design and ship products.</p>
+      <p class="tech-sub" data-rise>The tech stack and modern tooling I leverage to build and deploy scalable web
+        applications</p>
 
       <!-- FRONT-END -->
       <div class="tech-section" data-reveal>
@@ -229,13 +359,7 @@
           <!-- HTML5 -->
           <div class="tech-card">
             <div class="tech-icon-wrap">
-              <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
-                <path d="M5 3l2.1 23.4L16 29l8.9-2.6L27 3z" fill="#e44d26" />
-                <path d="M16 27.4l7.2-2L25 6H16z" fill="#f16529" />
-                <path d="M16 13.3h-4.1l-.3-3.3H16V6.7H8.3l.9 9.3H16zm0 8.3-.1.1-3.4-.9-.2-2.3H9.6l.4 4.8 6 1.7z"
-                  fill="#ebebeb" />
-                <path d="M16 13.3v2.7h3.8l-.4 4.1-3.4.9v2.8l6-1.6.7-8zm0-6.6v3.3h7.4l.3-3.3z" fill="#fff" />
-              </svg>
+              <img src="assets/img/html.png" alt="HTML5" style="width:100%;height:100%;object-fit:contain;" />
             </div>
             <span class="tech-card-name">HTML5</span>
           </div>
@@ -243,13 +367,7 @@
           <!-- CSS3 -->
           <div class="tech-card">
             <div class="tech-icon-wrap">
-              <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
-                <path d="M5 3l2.1 23.4L16 29l8.9-2.6L27 3z" fill="#1572b6" />
-                <path d="M16 27.4l7.2-2 1.8-20.4H16z" fill="#33a9dc" />
-                <path d="M16 13.3H11.9l-.3-3.3H16V6.7H8.3l.9 9.3H16zm0 8.3v-2.8l-3.4-.9-.2-2.3H9.7l.4 4.8 5.9 1.6z"
-                  fill="#fff" />
-                <path d="M16 13.3v2.7h3.7l-.4 4.1-3.3.9v2.8l5.9-1.6.8-8.9zm0-6.6v3.3h7.3l.3-3.3z" fill="#ebebeb" />
-              </svg>
+              <img src="assets/img/css.png" alt="CSS3" style="width:100%;height:100%;object-fit:contain;" />
             </div>
             <span class="tech-card-name">CSS3</span>
           </div>
@@ -302,11 +420,8 @@
           <!-- Three.js -->
           <div class="tech-card">
             <div class="tech-icon-wrap">
-              <svg viewBox="0 0 128 128" xmlns="http://www.w3.org/2000/svg">
-                <path
-                  d="M1.5 16.7l40.9 94.3 84.1-50.4zm39.8 78.6L8.9 22.4l68.9 36.4zm3.1 2.4 55.3-33.1-18.6-10L44.4 97.7zm38.4-35.5L45.3 44.5l38.4 5.3z"
-                  fill="#fff" />
-              </svg>
+              <img src="assets/img/Three.js.png" alt="Three.js"
+                style="width:100%;height:100%;object-fit:contain;filter:invert(1);" />
             </div>
             <span class="tech-card-name">Three.js</span>
           </div>
@@ -326,12 +441,7 @@
           <!-- PHP -->
           <div class="tech-card">
             <div class="tech-icon-wrap">
-              <svg viewBox="0 0 128 128" xmlns="http://www.w3.org/2000/svg">
-                <ellipse cx="64" cy="64" rx="64" ry="37" fill="#6181b6" />
-                <path
-                  d="M24.9 74.8l3-15.3h12.3c3.8.1 6.5 1.2 7.9 3.3 1 1.5 1.3 3.3.9 5.5-.5 2.5-1.6 4.5-3.4 6.1-1.8 1.5-4.1 2.3-7 2.5H33l-.7 3.9h-7.4zm10.4-5.6h3.9c1.4 0 2.6-.3 3.4-.9.8-.6 1.4-1.6 1.6-2.8.2-1.1.1-2-.5-2.5-.5-.5-1.5-.8-3-.8H37l-1.7 7zm22-9.7h7.4l-.7 3.7h6.3c2.4.1 4 .6 5 1.7.9 1 1.2 2.5.8 4.5l-1.8 9.4h-7.5l1.6-8.5c.2-1.1.1-1.8-.3-2.2-.4-.4-1.2-.6-2.3-.6h-5.5l-2.1 11.3H51l3.3-19.3zm22 0h12.3c3.8.1 6.5 1.2 7.9 3.3 1 1.5 1.3 3.3.9 5.5-.5 2.5-1.6 4.5-3.4 6.1-1.8 1.5-4.1 2.3-7 2.5h-5.6l-.7 3.9h-7.4l3-21.3zm10.4 5.7-1.7 7h3.9c1.4 0 2.6-.3 3.4-.9.8-.6 1.4-1.6 1.6-2.8.2-1.1.1-2-.5-2.5-.5-.5-1.5-.8-3-.8h-3.7z"
-                  fill="#fff" />
-              </svg>
+              <img src="assets/img/PHP.png" alt="PHP" style="width:100%;height:100%;object-fit:contain;" />
             </div>
             <span class="tech-card-name">PHP</span>
           </div>
@@ -339,31 +449,23 @@
           <!-- Node.js -->
           <div class="tech-card">
             <div class="tech-icon-wrap">
-              <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
-                <path d="M24 4L6 14v20l18 10 18-10V14z" fill="#388E3C" />
-                <path d="M24 4v30L6 24V14z" fill="#43A047" />
-                <path d="M24 4l18 10v10L24 34z" fill="#2E7D32" />
-                <path d="M24 34l18-10v10L24 44z" fill="#1B5E20" />
-                <path d="M6 24l18 10v10L6 34z" fill="#33691E" />
-                <text x="24" y="29" font-size="14" font-family="Arial" font-weight="bold" fill="#fff"
-                  text-anchor="middle">JS</text>
-              </svg>
+              <img src="assets/img/node.png" alt="Node.js" style="width:100%;height:100%;object-fit:contain;" />
             </div>
             <span class="tech-card-name">Node.js</span>
+          </div>
+
+          <!-- Express.js -->
+          <div class="tech-card">
+            <div class="tech-icon-wrap">
+              <img src="assets/img/express.png" alt="Express.js" style="width:100%;height:100%;object-fit:contain;" />
+            </div>
+            <span class="tech-card-name">Express.js</span>
           </div>
 
           <!-- MySQL -->
           <div class="tech-card">
             <div class="tech-icon-wrap">
-              <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
-                <ellipse cx="24" cy="30" rx="18" ry="10" fill="#005e86" />
-                <ellipse cx="24" cy="28" rx="18" ry="10" fill="#00758f" />
-                <path d="M6 28v6c0 5.5 8.1 10 18 10s18-4.5 18-10v-6c0 5.5-8.1 10-18 10S6 33.5 6 28z" fill="#005e86" />
-                <text x="24" y="32" font-size="9" font-family="Arial" font-weight="bold" fill="#fff"
-                  text-anchor="middle">MySQL</text>
-                <path d="M30 10c2-4 8-8 10-6-2 2-4 8-6 10-1-2-3-3-4-4z" fill="#e48e00" />
-                <path d="M20 14c-1-5 2-12 6-12 0 4-1 8-2 12-2-1-3-1-4 0z" fill="#e48e00" />
-              </svg>
+              <img src="assets/img/mysql.png" alt="MySQL" style="width:100%;height:100%;object-fit:contain;" />
             </div>
             <span class="tech-card-name">MySQL</span>
           </div>
@@ -371,19 +473,8 @@
           <!-- PostgreSQL -->
           <div class="tech-card">
             <div class="tech-icon-wrap">
-              <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="24" cy="24" r="20" fill="#336791" />
-                <circle cx="24" cy="24" r="20" fill="none" stroke="#fff" stroke-width="1" opacity="0.2" />
-                <ellipse cx="24" cy="22" rx="10" ry="11" fill="#fff" opacity="0.9" />
-                <ellipse cx="24" cy="22" rx="8" ry="9" fill="#336791" />
-                <circle cx="21" cy="19" r="1.5" fill="#fff" />
-                <circle cx="27" cy="19" r="1.5" fill="#fff" />
-                <path d="M21 27 q-4 2-3 7" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round" />
-                <ellipse cx="15" cy="19" rx="4" ry="5" fill="#fff" opacity="0.85" />
-                <ellipse cx="33" cy="19" rx="4" ry="5" fill="#fff" opacity="0.85" />
-                <ellipse cx="15" cy="19" rx="2.5" ry="3.5" fill="#336791" opacity="0.5" />
-                <ellipse cx="33" cy="19" rx="2.5" ry="3.5" fill="#336791" opacity="0.5" />
-              </svg>
+              <img src="assets/img/postgresql.png" alt="PostgreSQL"
+                style="width:100%;height:100%;object-fit:contain;" />
             </div>
             <span class="tech-card-name">PostgreSQL</span>
           </div>
@@ -395,61 +486,139 @@
   </section>
 
   <section id="contact" class="contact-section">
-    <div class="contact-container">
+    <div class="mobile-only-contact">
+      <div class="contact-container">
 
-      <div class="contact-left" data-contact-reveal>
-        <form action="https://api.web3forms.com/submit" method="POST" class="contact-form">
-          <input type="hidden" name="access_key" value="c0d08549-83d7-4cc0-be6a-347753702e2f">
+        <div class="contact-left" data-contact-reveal>
+          <form action="https://api.web3forms.com/submit" method="POST" class="contact-form">
+            <input type="hidden" name="access_key" value="c0d08549-83d7-4cc0-be6a-347753702e2f">
 
-          <div class="input-group">
-            <label>NAME</label>
-            <input type="text" name="name" placeholder="Enter your name" required />
-            <span class="focus-border"></span>
-          </div>
+            <div class="input-group">
+              <label>NAME</label>
+              <input type="text" name="name" placeholder="Enter your name" required />
+              <span class="focus-border"></span>
+            </div>
 
-          <div class="input-group">
-            <label>EMAIL ADDRESS</label>
-            <input type="email" name="email" placeholder="Enter your business email" required />
-            <span class="focus-border"></span>
-          </div>
+            <div class="input-group">
+              <label>EMAIL ADDRESS</label>
+              <input type="email" name="email" placeholder="Enter your business email" required />
+              <span class="focus-border"></span>
+            </div>
 
-          <div class="input-group">
-            <label>MESSAGE</label>
-            <textarea name="message" placeholder="Tell me about your project" rows="4" required></textarea>
-            <span class="focus-border"></span>
-          </div>
+            <div class="input-group">
+              <label>MESSAGE</label>
+              <textarea name="message" placeholder="Tell me about your project" rows="4" required></textarea>
+              <span class="focus-border"></span>
+            </div>
 
-          <button type="submit" class="contact-send-btn">
-            SEND MESSAGE
-          </button>
-        </form>
-      </div>
-
-      <div class="contact-right" data-contact-reveal>
-        <div class="text-wrapper">
-          <div class="availability-tag">
-            <span class="dot"></span> AVAILABLE FOR NEW PROJECTS
-          </div>
-          <h1 class="contact-header">LET'S <span class="mobile-hide-br"><br></span> CONNECT</h1>
-          <p class="contact-subtext">
-            Bringing your vision to life through elegant, high-performance digital solutions.
-          </p>
+            <button type="submit" class="contact-send-btn">
+              SEND MESSAGE
+            </button>
+          </form>
         </div>
 
-        <div class="contact-info-footer">
-          <span class="direct-label">DIRECT EMAIL</span>
-          <a href="mailto:jade28.mancio@gmail.com" class="contact-email-link">
-            <i class="fa-solid fa-envelope"></i>
-            <span>jade28.mancio@gmail.com</span>
-          </a>
+        <div class="contact-right" data-contact-reveal>
+          <div class="text-wrapper">
+            <div class="availability-tag">
+              <span class="dot"></span> AVAILABLE FOR NEW PROJECTS
+            </div>
+            <h1 class="contact-header">LET'S <span class="mobile-hide-br"><br></span> CONNECT</h1>
+            <p class="contact-subtext">
+              Bringing your vision to life through elegant, high-performance digital solutions.
+            </p>
+          </div>
+
+          <div class="contact-info-footer">
+            <span class="direct-label">DIRECT EMAIL</span>
+            <a href="mailto:jade28.mancio@gmail.com" class="contact-email-link">
+              <i class="fa-solid fa-envelope"></i>
+              <span>jade28.mancio@gmail.com</span>
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div> <!-- Close mobile-only-contact -->
+
+    <div class="desktop-only-footer">
+
+      <!-- Top CTA section: transparent background -->
+      <div class="desktop-footer-cta-wrapper">
+        <div class="marquee-container">
+          <div class="marquee-content">
+            <span class="marquee-text">LET'S BUILD SOMETHING EXTRAORDINARY — </span>
+            <span class="marquee-text">LET'S BUILD SOMETHING EXTRAORDINARY — </span>
+            <span class="marquee-text">LET'S BUILD SOMETHING EXTRAORDINARY — </span>
+            <span class="marquee-text">LET'S BUILD SOMETHING EXTRAORDINARY — </span>
+            <span class="marquee-text">LET'S BUILD SOMETHING EXTRAORDINARY — </span>
+            <span class="marquee-text">LET'S BUILD SOMETHING EXTRAORDINARY — </span>
+            <span class="marquee-text">LET'S BUILD SOMETHING EXTRAORDINARY — </span>
+            <span class="marquee-text">LET'S BUILD SOMETHING EXTRAORDINARY — </span>
+            <span class="marquee-text">LET'S BUILD SOMETHING EXTRAORDINARY — </span>
+            <span class="marquee-text">LET'S BUILD SOMETHING EXTRAORDINARY — </span>
+          </div>
+        </div>
+        <div class="marquee-btn-wrapper">
+          <button class="footer-contact-btn" onclick="openContactPanel()">START A PROJECT <i
+              class="fa-solid fa-arrow-right"></i></button>
+        </div>
+      </div>
+
+      <!-- Big black centered footer block -->
+      <div class="desktop-footer-black">
+        <div class="desktop-footer-inner">
+
+          <!-- Main row: logo left + content right -->
+          <div class="footer-main-row">
+
+            <!-- Logo left -->
+            <div class="footer-logo-left">
+              <img src="assets/img/JMT1.png" alt="Jade Mancio Logo" class="footer-logo-img" />
+            </div>
+
+            <!-- Content right -->
+            <div class="footer-content-right">
+
+              <!-- Brand + tagline -->
+              <div class="footer-brand-center">
+                <h3 class="footer-brand-name">JADE MANCIO</h3>
+                <p class="footer-brand-tagline">Full-Stack Developer crafting elegant, high-performance digital
+                  experiences — turning complex ideas into reality, one line of code at a time.</p>
+              </div>
+
+              <!-- Social icons row -->
+              <h4 class="footer-social-label">SOCIAL</h4>
+              <div class="footer-social-icons">
+                <a href="#" target="_blank" class="footer-social-icon" title="LinkedIn"><i
+                    class="fa-brands fa-linkedin-in"></i></a>
+                <a href="#" target="_blank" class="footer-social-icon" title="GitHub"><i
+                    class="fa-brands fa-github"></i></a>
+                <a href="#" target="_blank" class="footer-social-icon" title="Facebook"><i
+                    class="fa-brands fa-facebook-f"></i></a>
+                <a href="mailto:jade28.mancio@gmail.com" class="footer-social-icon" title="Email"><i
+                    class="fa-solid fa-envelope"></i></a>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Bottom bar: copyright + nav links -->
+          <div class="footer-bottom-bar">
+            <span class="footer-copyright">© 2026 Jade Mancio. All rights reserved.</span>
+            <nav class="footer-bottom-nav">
+              <a href="#">Home</a>
+              <a href="#about">About</a>
+              <a href="#works">Works</a>
+              <a href="#" onclick="openContactPanel()">Contact</a>
+            </nav>
+          </div>
+
         </div>
       </div>
 
     </div>
 
-    <footer class="contact-footer">
-      <p>© 2026 JADE MANCIO <span class="separator">|</span> ALL RIGHTS RESERVED</p>
-    </footer>
+
   </section>
   <script>
     const header = document.querySelector('.transparent-header');
@@ -488,30 +657,16 @@
       menu.classList.toggle('active');
       burger.classList.toggle('active');
 
-      // Prevent scrolling when menu is open
+      // Use Lenis stop/start instead of overflow:hidden
+      // overflow:hidden on body kills position:sticky on gallery cards
       if (menu.classList.contains('active')) {
-        document.body.style.overflow = 'hidden';
+        if (window.lenis) window.lenis.stop();
       } else {
-        document.body.style.overflow = '';
+        if (window.lenis) window.lenis.start();
       }
     }
 
-    // Contact Button Desktop Logic
-    const contactBtn = document.querySelector('.contact-btn');
-    if (contactBtn) {
-      contactBtn.addEventListener('click', function (e) {
-        e.preventDefault();
-        // Scroll to the very bottom of the page using Lenis
-        if (typeof lenis !== 'undefined') {
-          lenis.scrollTo(document.documentElement.scrollHeight);
-        } else {
-          window.scrollTo({
-            top: document.documentElement.scrollHeight,
-            behavior: 'smooth'
-          });
-        }
-      });
-    }
+
   </script>
 
   <!-- Lenis Smooth Scroll -->
@@ -533,8 +688,8 @@
       gyroControls: false,
       minHeight: 200,
       minWidth: 200,
-      // Dark navy background — matches screenshot
-      backgroundColor: 0x0d1230,
+      // Black background
+      backgroundColor: 0x000000,
       // Teal/cyan base ring color
       baseColor: 0x1a6080,
       // Bright highlight (pink/white)

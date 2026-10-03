@@ -7,7 +7,7 @@
   <title>Jade Mancio | Portfolio</title>
   <link rel="icon" type="image/png" href="assets/img/JMT1.png">
   <link
-    href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&family=Orbitron:wght@400;700;900&family=Sora:wght@400;600;700;800&family=Inter:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,300;1,9..144,400;1,9..144,500&family=Orbitron:wght@400;700;900&family=Sora:wght@400;600;700;800&family=Inter:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap"
     rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="assets/css/main.css">
@@ -38,7 +38,7 @@
     <ul class="nav-links">
       <li><a href="#" onclick="toggleMenu()">HOME</a></li>
       <li><a href="#about" onclick="toggleMenu()">ABOUT</a></li>
-      <li><a href="#works" onclick="toggleMenu()">WORKS</a></li>
+      <li><a href="#new-works-section" onclick="toggleMenu()">WORKS</a></li>
       <li><a href="#tech" onclick="toggleMenu()">TECH STACK</a></li>
       <li><a href="#" onclick="toggleMenu(); openContactPanel();">CONTACT</a></li>
     </ul>
@@ -134,6 +134,10 @@
         <div class="sf-socials">
           <a href="https://www.linkedin.com/in/ᴊᴀᴅᴇ-ᴍᴀɴᴄɪᴏ-504169380" target="_blank" class="sf-social-link"><i
               class="fa-brands fa-linkedin-in"></i></a>
+          <a href="https://ph.jobstreet.com/profile/jade-mancio" target="_blank" class="sf-social-link sf-jobstreet"
+            title="JobStreet">
+            <img src="assets/img/jobs1.png" alt="JobStreet" class="jobstreet-icon-img">
+          </a>
           <a href="https://github.com/jade-mancio-dev" target="_blank" class="sf-social-link"><i
               class="fa-brands fa-github"></i></a>
           <a href="https://www.facebook.com/share/1CGV7vPhP8/" target="_blank" class="sf-social-link"><i
@@ -180,15 +184,27 @@
     <div class="hero-content">
       <div class="hero-text-wrapper">
         <h1 class="main-title">HI I'M JADE</h1>
-        <h3 class="sub-title">FULLSTACK DEVELOPER</h3>
+        <h3 class="sub-title">IT PROFESSIONAL & DEVELOPER</h3>
       </div>
     </div>
 
     <div class="stats-bar">
-      <div class="stat-item">PROJECTS <strong>4</strong></div>
-      <div class="stat-item">CLIENTS <strong>3</strong></div>
-      <div class="stat-item">SATISFACTION <strong>80%</strong></div>
-      <div class="stat-item">EXPERIENCE <strong>1 YEAR</strong></div>
+      <div class="stat-item">
+        <strong class="stat-value">4</strong>
+        <span class="stat-label">PROJECTS</span>
+      </div>
+      <div class="stat-item">
+        <strong class="stat-value">4</strong>
+        <span class="stat-label">CLIENTS</span>
+      </div>
+      <div class="stat-item">
+        <strong class="stat-value">100%</strong>
+        <span class="stat-label">SATISFACTION</span>
+      </div>
+      <div class="stat-item">
+        <strong class="stat-value">1 YR</strong>
+        <span class="stat-label">EXPERIENCE</span>
+      </div>
     </div>
   </section>
 
@@ -247,12 +263,12 @@
         <div class="about-text">
           <h2 class="about-header" data-letter-rise>ABOUT ME</h2>
           <p class="about-paragraph" data-rise>
-            A full-stack developer from the Philippines, I specialize in building scalable systems and crafting
-            intuitive, user-centered digital experiences. With a deep passion for both backend architecture and frontend
-            craftsmanship, I bring a unique perspective shaped by resilience, creativity, and discipline. By bridging
-            the gap between complex logic and seamless design, I ensure high performance in every line of code. I
-            believe that
-            exceptional software isn't just written—it is felt.
+            A multi-faceted IT Professional and Full-Stack Developer from the Philippines. Beyond building scalable web
+            applications and crafting intuitive digital experiences, my expertise spans across comprehensive IT support,
+            including network troubleshooting, OS installation and configuration, and efficient data encoding. Whether I
+            am architecting backend logic, designing frontend interfaces, or managing administrative tasks with
+            Microsoft Office, I bring resilience, creativity, and discipline to every project. I ensure high performance
+            and reliability in every aspect of my work.
           </p>
         </div>
         <div class="about-image-wrapper">
@@ -275,7 +291,7 @@
               </svg>
 
               <div class="about-skeleton-circle">
-                <img src="assets/img/jade.png" alt="Jade Mancio" class="about-profile-img" />
+                <img src="assets/img/me1.jpg" alt="Jade Mancio" class="about-profile-img" />
               </div>
 
             </div>
@@ -291,24 +307,53 @@
 
       <!-- Dark background layer (always visible, behind reveal) -->
       <div class="about-bg-dark">
+        <!-- Center Geometric Reticle -->
+        <div class="reticle-container">
+          <svg class="tech-reticle" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+            <!-- Outer dashed ring -->
+            <circle cx="50" cy="50" r="40" fill="none" stroke="rgba(255,255,255,0.15)" stroke-width="1"
+              stroke-dasharray="2 6" />
+            <!-- Inner solid faint ring -->
+            <circle cx="50" cy="50" r="25" fill="none" stroke="rgba(255,255,255,0.3)" stroke-width="0.5" />
+            <!-- Spinning crosshairs (Full Scope with Text) -->
+            <g class="reticle-spin">
+              <!-- RIGHT (0 deg) -->
+              <g>
+                <line x1="95" y1="50" x2="1100" y2="50" stroke="rgba(255,255,255,0.4)" stroke-width="1"
+                  stroke-linecap="round" />
+                <text x="105" y="45.5" fill="rgba(255,255,255,0.7)" font-family="'Orbitron', sans-serif" font-size="5.5"
+                  font-weight="600" letter-spacing="2">COMPETENCE</text>
+              </g>
+              <!-- BOTTOM (90 deg) -->
+              <g transform="rotate(90 50 50)">
+                <line x1="95" y1="50" x2="1100" y2="50" stroke="rgba(255,255,255,0.4)" stroke-width="1"
+                  stroke-linecap="round" />
+                <text x="105" y="45.5" fill="rgba(255,255,255,0.7)" font-family="'Orbitron', sans-serif" font-size="5.5"
+                  font-weight="600" letter-spacing="2">RELIABILITY</text>
+              </g>
+              <!-- LEFT (180 deg) -->
+              <g transform="rotate(180 50 50)">
+                <line x1="95" y1="50" x2="1100" y2="50" stroke="rgba(255,255,255,0.4)" stroke-width="1"
+                  stroke-linecap="round" />
+                <text x="105" y="45.5" fill="rgba(255,255,255,0.7)" font-family="'Orbitron', sans-serif" font-size="5.5"
+                  font-weight="600" letter-spacing="2">RESPECT</text>
+              </g>
+              <!-- TOP (270 deg) -->
+              <g transform="rotate(270 50 50)">
+                <line x1="95" y1="50" x2="1100" y2="50" stroke="rgba(255,255,255,0.4)" stroke-width="1"
+                  stroke-linecap="round" />
+                <text x="105" y="45.5" fill="rgba(255,255,255,0.7)" font-family="'Orbitron', sans-serif" font-size="5.5"
+                  font-weight="600" letter-spacing="2">ACCOUNTABILITY</text>
+              </g>
+            </g>
+            <!-- Center dot -->
+            <circle cx="50" cy="50" r="2.5" fill="rgba(255,255,255,0.9)" />
+          </svg>
+        </div>
         <p class="about-hint">↓ scroll to reveal</p>
       </div>
 
-      <!-- Circular text that orbits the reveal circle edge -->
-      <div class="about-ring-text-layer" id="aboutRingTextLayer">
-        <svg id="aboutRingTextSvg" class="about-ring-text-svg" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <path id="aboutRingTextPath" d="" />
-          </defs>
-          <g id="aboutRingTextG" class="about-ring-text-g">
-            <text class="about-ring-text-label">
-              <textPath href="#aboutRingTextPath" startOffset="0%">THE PERSON BEHIND THE CODE · THE PERSON BEHIND THE
-                CODE · THE PERSON BEHIND THE CODE · THE PERSON BEHIND THE CODE · THE PERSON BEHIND THE CODE · THE PERSON
-                BEHIND THE CODE · THE PERSON BEHIND THE CODE · THE PERSON BEHIND THE CODE ·</textPath>
-            </text>
-          </g>
-        </svg>
-      </div>
+
 
       <!-- White circle-reveal content layer -->
       <div class="about-reveal-layer" id="aboutRevealLayer">
@@ -323,7 +368,7 @@
 
           <!-- LEFT — expanded bio -->
           <div class="about-reveal-left">
-            <span class="about-role-tag">Full-Stack Developer</span>
+            <span class="about-role-tag">IT Professional & Developer</span>
             <h2 class="about-reveal-name">JADE MANCIO</h2>
 
             <div class="about-origin-badge">
@@ -334,11 +379,13 @@
             <div class="about-divider"></div>
 
             <p class="about-reveal-para" style="text-align: justify; text-justify: inter-word;">
-              A full-stack developer from the Philippines, I specialize in developing scalable systems and crafting
-              intuitive, user-centered digital experiences. With a deep passion for both backend architecture and
-              frontend craftsmanship, I bring a unique perspective shaped by resilience, creativity, and discipline. By
-              bridging the gap between complex logic and seamless design, I ensure high performance in every line of
-              code. &ldquo;I believe that exceptional software isn&rsquo;t just written &mdash; it is felt.&rdquo;
+              A multi-faceted IT Professional and Full-Stack Developer from the Philippines. Beyond building scalable
+              web applications and crafting intuitive digital experiences, my expertise spans across comprehensive IT
+              support, including network troubleshooting, OS installation and configuration, and efficient data
+              encoding. Whether I am architecting backend logic, designing frontend interfaces, or managing
+              administrative workflows with Microsoft Office, I bring a unique perspective shaped by resilience,
+              creativity, and discipline. &ldquo;I believe that exceptional work isn&rsquo;t just delivered &mdash; it
+              is experienced.&rdquo;
             </p>
 
             <div class="about-tech-stack">// Refined by logic. Defined by code. &nbsp;&mdash;&nbsp; 🇵🇭 Proudly
@@ -366,7 +413,7 @@
                 </svg>
 
                 <div class="about-skeleton-circle">
-                  <img src="assets/img/jade.png" alt="Jade Mancio" class="about-profile-img" />
+                  <img src="assets/img/me1.jpg" alt="Jade Mancio" class="about-profile-img" />
                 </div>
 
               </div>
@@ -383,159 +430,596 @@
 
   </section>
 
-  <section id="works" class="works-section">
-    <!-- ═══ UNIFIED SCROLL SCENE: Entrance + Gallery ═══ -->
-    <div id="works-scroll-scene">
-      <div id="works-sticky-stage">
+  <!-- ═══ NEW WORKS — Split Slider (Desktop Only) ═══ -->
+  <!-- Tall wrapper creates scroll "parking space" so Lenis can hand off control -->
+  <section id="new-works-section" class="nws-wrapper">
 
-        <!-- ENTRANCE: TOP MARQUEE GROUP -->
-        <div id="works-group-top">
-          <div class="wm-row">
-            <div class="wm-inner" id="wt1">
-              <span>FULL-STACK</span><span>✦</span><span>DEVELOPMENT</span><span>✦</span>
-              <span>FULL-STACK</span><span>✦</span><span>DEVELOPMENT</span><span>✦</span>
-              <span>FULL-STACK</span><span>✦</span><span>DEVELOPMENT</span><span>✦</span>
-              <span>FULL-STACK</span><span>✦</span><span>DEVELOPMENT</span><span>✦</span>
-              <span>FULL-STACK</span><span>✦</span><span>DEVELOPMENT</span><span>✦</span>
+    <!-- Sticky panel — stays at top:0 while wrapper scrolls past -->
+    <div id="new-works-sticky">
+
+      <header class="nw-header">MY WORKS</header>
+
+      <div class="nw-main">
+
+        <!-- Left: number navigator -->
+        <aside class="nw-pane">
+          <div class="nw-slider nw-left">
+            <div class="nw-slide">
+              <div class="nw-card"><span class="nw-num">6</span>
+                <div class="nw-lbl">Navigation scope</div>
+              </div>
+            </div>
+            <div class="nw-slide">
+              <div class="nw-card"><span class="nw-num">5</span>
+                <div class="nw-lbl">Navigation scope</div>
+              </div>
+            </div>
+            <div class="nw-slide">
+              <div class="nw-card"><span class="nw-num">4</span>
+                <div class="nw-lbl">Navigation scope</div>
+              </div>
+            </div>
+            <div class="nw-slide">
+              <div class="nw-card"><span class="nw-num">3</span>
+                <div class="nw-lbl">Navigation scope</div>
+              </div>
+            </div>
+            <div class="nw-slide">
+              <div class="nw-card"><span class="nw-num">2</span>
+                <div class="nw-lbl">Navigation scope</div>
+              </div>
+            </div>
+            <div class="nw-slide">
+              <div class="nw-card"><span class="nw-num">1</span>
+                <div class="nw-lbl">Navigation scope</div>
+              </div>
             </div>
           </div>
-          <div class="wm-row">
-            <div class="wm-inner wm-ghost" id="wt2">
-              <span>SYSTEMS</span><span>✦</span><span>ARCHITECTURE</span><span>✦</span>
-              <span>SYSTEMS</span><span>✦</span><span>ARCHITECTURE</span><span>✦</span>
-              <span>SYSTEMS</span><span>✦</span><span>ARCHITECTURE</span><span>✦</span>
-              <span>SYSTEMS</span><span>✦</span><span>ARCHITECTURE</span><span>✦</span>
-              <span>SYSTEMS</span><span>✦</span><span>ARCHITECTURE</span><span>✦</span>
-            </div>
-          </div>
-        </div>
+        </aside>
 
-        <!-- ENTRANCE: CENTER TITLE -->
-        <div id="works-title-wrap">
-          <p class="works-eyebrow">PROJECTS</p>
-          <h1 class="works-entrance-title">MY WORKS</h1>
-        </div>
+        <!-- Right: project image showcase -->
+        <main class="nw-pane">
+          <div class="nw-slider nw-right">
 
-        <!-- ENTRANCE: BOTTOM MARQUEE GROUP -->
-        <div id="works-group-bot">
-          <div class="wm-row">
-            <div class="wm-inner wm-ghost" id="wb1">
-              <span>SCALABLE</span><span>✦</span><span>SOLUTIONS</span><span>✦</span>
-              <span>SCALABLE</span><span>✦</span><span>SOLUTIONS</span><span>✦</span>
-              <span>SCALABLE</span><span>✦</span><span>SOLUTIONS</span><span>✦</span>
-              <span>SCALABLE</span><span>✦</span><span>SOLUTIONS</span><span>✦</span>
-              <span>SCALABLE</span><span>✦</span><span>SOLUTIONS</span><span>✦</span>
+            <div class="nw-slide">
+              <div class="nw-card">
+                <img src="assets/img/c1.webp" alt="Chemsaga Web-game" class="nw-img">
+                <div class="nw-lbl">Chemsaga Web-game
+                  <div class="nw-visit">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                      stroke-linecap="round" stroke-linejoin="round">
+                      <line x1="7" y1="17" x2="17" y2="7"></line>
+                      <polyline points="7 7 17 7 17 17"></polyline>
+                    </svg>
+                  </div>
+                </div>
+              </div>
             </div>
-          </div>
-          <div class="wm-row">
-            <div class="wm-inner" id="wb2">
-              <span>FRONTEND</span><span>✦</span><span>BACKEND</span><span>✦</span>
-              <span>FRONTEND</span><span>✦</span><span>BACKEND</span><span>✦</span>
-              <span>FRONTEND</span><span>✦</span><span>BACKEND</span><span>✦</span>
-              <span>FRONTEND</span><span>✦</span><span>BACKEND</span><span>✦</span>
-              <span>FRONTEND</span><span>✦</span><span>BACKEND</span><span>✦</span>
-            </div>
-          </div>
-        </div>
 
-        <div id="works-vignette"></div>
-        <div id="works-scroll-hint">
-          <span>Scroll</span>
-          <div class="ws-arrow"></div>
-        </div>
+            <div class="nw-slide">
+              <div class="nw-card">
+                <img src="assets/img/2.webp" alt="The Portfolio Project" class="nw-img">
+                <div class="nw-lbl">The Portfolio Project
+                  <div class="nw-visit">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                      stroke-linecap="round" stroke-linejoin="round">
+                      <line x1="7" y1="17" x2="17" y2="7"></line>
+                      <polyline points="7 7 17 7 17 17"></polyline>
+                    </svg>
+                  </div>
+                </div>
+              </div>
+            </div>
 
-        <!-- GALLERY CARDS (inside same sticky stage) -->
-        <div class="work-card-wrapper first-card">
-          <div class="work-card">
-            <div class="preview-grid">
-              <div class="view-pc">
-                <img src="assets/img/c1.png" alt="Project Desktop View">
-                <div class="view-label">DESKTOP/MOBILE</div>
+            <div class="nw-slide">
+              <div class="nw-card">
+                <img src="assets/img/3.webp" alt="Client Project Portfolio" class="nw-img">
+                <div class="nw-lbl">Client Project Portfolio
+                  <div class="nw-visit">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                      stroke-linecap="round" stroke-linejoin="round">
+                      <line x1="7" y1="17" x2="17" y2="7"></line>
+                      <polyline points="7 7 17 7 17 17"></polyline>
+                    </svg>
+                  </div>
+                </div>
               </div>
             </div>
-            <div class="card-content">
-              <div class="card-text">
-                <span>01</span>
-                <h2>Chemsaga</h2>
-              </div>
-              <p class="card-desc-desktop">A periodic table of elements based board game built with full-stack web
-                technologies.</p>
-            </div>
-          </div>
-        </div>
 
-        <div class="work-card-wrapper">
-          <div class="work-card">
-            <div class="preview-grid">
-              <div class="view-pc">
-                <img src="assets/img/2.png" alt="Project Desktop View">
-                <div class="view-label">DESKTOP</div>
-              </div>
-              <div class="view-mobile">
-                <img src="assets/img/2.2.png" alt="Project Mobile View">
-                <div class="view-label">MOBILE</div>
+            <div class="nw-slide">
+              <div class="nw-card">
+                <img src="assets/img/4.webp" alt="Client Project Portfolio 2" class="nw-img">
+                <div class="nw-lbl">Client Project Portfolio 2
+                  <div class="nw-visit">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                      stroke-linecap="round" stroke-linejoin="round">
+                      <line x1="7" y1="17" x2="17" y2="7"></line>
+                      <polyline points="7 7 17 7 17 17"></polyline>
+                    </svg>
+                  </div>
+                </div>
               </div>
             </div>
-            <div class="card-content">
-              <div class="card-text">
-                <span>02</span>
-                <h2>Portfolio</h2>
-              </div>
-              <p class="card-desc-desktop">A high-performance personal portfolio built from the ground up using vanilla
-                technologies with custom CSS architecture.</p>
-            </div>
-          </div>
-        </div>
 
-        <div class="work-card-wrapper">
-          <div class="work-card">
-            <div class="preview-grid">
-              <div class="view-pc">
-                <img src="assets/img/3.png" alt="Project Desktop View">
-                <div class="view-label">DESKTOP</div>
-              </div>
-              <div class="view-mobile">
-                <img src="assets/img/3.3.png" alt="Project Mobile View">
-                <div class="view-label">MOBILE</div>
+            <div class="nw-slide">
+              <div class="nw-card">
+                <img src="assets/img/5.webp" alt="Collaboration Ai Project" class="nw-img">
+                <div class="nw-lbl">Collaboration Ai Project
+                  <div class="nw-visit">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                      stroke-linecap="round" stroke-linejoin="round">
+                      <line x1="7" y1="17" x2="17" y2="7"></line>
+                      <polyline points="7 7 17 7 17 17"></polyline>
+                    </svg>
+                  </div>
+                </div>
               </div>
             </div>
-            <div class="card-content">
-              <div class="card-text">
-                <span>03</span>
-                <h2>Portfolio</h2>
-              </div>
-              <p class="card-desc-desktop">A custom web solution for a client — responsive design, clean CSS
-                architecture, and optimized performance.</p>
-            </div>
-          </div>
-        </div>
 
-        <div class="work-card-wrapper">
-          <div class="work-card">
-            <div class="preview-grid">
-              <div class="view-pc">
-                <img src="assets/img/4.png" alt="Project Desktop View">
-                <div class="view-label">DESKTOP</div>
-              </div>
-              <div class="view-mobile">
-                <img src="assets/img/4.2.png" alt="Project Mobile View">
-                <div class="view-label">MOBILE</div>
+            <div class="nw-slide">
+              <div class="nw-card">
+                <img src="assets/img/6.webp" alt="Type Specimen Poster Series" class="nw-img">
+                <div class="nw-lbl">Type Specimen Poster Series
+                  <div class="nw-visit">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                      stroke-linecap="round" stroke-linejoin="round">
+                      <line x1="7" y1="17" x2="17" y2="7"></line>
+                      <polyline points="7 7 17 7 17 17"></polyline>
+                    </svg>
+                  </div>
+                </div>
               </div>
             </div>
-            <div class="card-content">
-              <div class="card-text">
-                <span>04</span>
-                <h2>Portfolio</h2>
-              </div>
-              <p class="card-desc-desktop">Another client portfolio built to enhance digital presence with a focus on
-                modern UX and responsive layouts.</p>
-            </div>
+
           </div>
-        </div>
+        </main>
 
       </div>
     </div>
-    <!-- ═══ END UNIFIED SCROLL SCENE ═══ -->
+  </section>
+
+  <section id="certificates" class="certificates-section">
+
+    <!-- ═══ NEW CERTIFICATES DESIGN — Split-Flap Index ═══ -->
+    <style>
+      /* ── Certificates Section: Scoped Styles ── */
+      .cert-index-wrapper {
+        --ci-void: #0a0a0a;
+        --ci-paper: #f3f1ea;
+        --ci-ink: #121110;
+        --ci-bone: #ffffff;
+        --ci-gray-mid: #9a9a94;
+        --ci-gray-soft: #666660;
+        --ci-line: rgba(255, 255, 255, 0.4);
+        --ci-split-gap: 4vw;
+        position: relative;
+        z-index: 11;
+        background: var(--ci-void);
+        color: var(--ci-bone);
+      }
+      .cert-index-wrapper ::selection { background: var(--ci-bone); color: var(--ci-void); }
+
+      .ci-page { max-width: 1400px; margin: 0 auto; padding: 0 6vw; }
+
+      /* Intro */
+      .ci-intro { 
+        padding: min(9vh, 84px) 0 48px; 
+        max-width: 1000px; 
+        margin: 0 auto; 
+        display: flex; 
+        flex-direction: column; 
+        align-items: center; 
+        text-align: center; 
+      }
+      .ci-eyebrow {
+        font-family: 'Space Mono', monospace; font-size: 11px;
+        letter-spacing: 0.28em; text-transform: uppercase; color: var(--ci-gray-mid);
+        display: flex; align-items: center; gap: 14px; margin-bottom: 30px;
+      }
+      .ci-eyebrow::before, .ci-eyebrow::after { content: ""; width: 40px; height: 1px; background: var(--ci-line); }
+      .ci-eyebrow .ci-yr { color: var(--ci-bone); }
+
+      .ci-intro h2 {
+        font-family: 'Fraunces', serif;
+        font-weight: 600;
+        font-size: clamp(3rem, 7vw, 6rem);
+        line-height: 0.98;
+        letter-spacing: -0.02em;
+        text-transform: uppercase;
+        margin: 0;
+      }
+      .ci-intro h2 .ci-line2 {
+        display: block; margin-top: 6px;
+        font-style: italic; font-weight: 400;
+        text-transform: none; letter-spacing: -0.01em;
+        font-size: 0.72em; color: var(--ci-gray-mid);
+      }
+      .ci-intro h2 .ci-accent { color: var(--ci-bone); font-weight: 500; }
+
+      .ci-intro p {
+        margin-top: 26px;
+        font-family: 'Space Mono', monospace;
+        font-size: 14px; line-height: 1.9;
+        color: var(--ci-gray-mid);
+        max-width: 600px;
+        text-transform: uppercase; letter-spacing: 0.06em;
+      }
+
+      /* Split layout */
+      .ci-split {
+        position: relative;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        align-items: start;
+        padding: 0 0 120px;
+        gap: var(--ci-split-gap);
+      }
+
+      /* List Column */
+      .ci-list-col { min-width: 0; position: relative; perspective: 1400px; }
+      .ci-cert-list { list-style: none; position: relative; }
+      .ci-cert-list::before {
+        content: ""; position: absolute; top: 0; left: 0;
+        right: calc(-1 * (100% + var(--ci-split-gap)));
+        height: 1px; background: var(--ci-line);
+        pointer-events: none; z-index: 1;
+      }
+
+      .ci-cert-row {
+        position: relative;
+        display: flex; align-items: center; justify-content: space-between; gap: 20px;
+        padding: 24px 16px;
+        cursor: pointer; outline: none;
+        background: transparent; color: var(--ci-bone);
+        transform-style: preserve-3d;
+        transition: color 0.25s ease 0.12s;
+      }
+      .ci-cert-row::before {
+        content: ""; position: absolute; inset: 0;
+        right: calc(-1 * (100% + var(--ci-split-gap)));
+        background: var(--ci-bone);
+        z-index: 0; pointer-events: none;
+        transform-origin: top center;
+        transform: rotateX(-100deg);
+        backface-visibility: hidden;
+        box-shadow: 0 14px 30px rgba(0,0,0,0.35);
+        transition: transform 0.55s cubic-bezier(0.65, 0, 0.35, 1);
+      }
+      .ci-cert-row::after {
+        content: ""; position: absolute; bottom: 0; left: 0;
+        right: calc(-1 * (100% + var(--ci-split-gap)));
+        height: 1px; background: var(--ci-line);
+        pointer-events: none; z-index: 2;
+      }
+      .ci-cert-row:hover::before,
+      .ci-cert-row:focus-visible::before,
+      .ci-cert-row.ci-active::before { transform: rotateX(0deg); }
+      .ci-cert-row:hover,
+      .ci-cert-row:focus-visible,
+      .ci-cert-row.ci-active { color: var(--ci-void); }
+
+      .ci-row-main { position: relative; z-index: 1; flex: 1; min-width: 0; }
+      .ci-row-title {
+        display: block;
+        font-family: 'Space Mono', monospace;
+        font-weight: 700; font-size: 1.15rem;
+        letter-spacing: 0.04em; text-transform: uppercase;
+        color: inherit;
+        transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+      .ci-cert-row:hover .ci-row-title,
+      .ci-cert-row:focus-visible .ci-row-title,
+      .ci-cert-row.ci-active .ci-row-title { transform: translateX(6px); }
+      .ci-row-sub {
+        display: block; margin-top: 6px;
+        font-family: 'Space Mono', monospace; font-size: 11px;
+        letter-spacing: 0.08em; text-transform: uppercase;
+        color: var(--ci-gray-mid);
+        transition: color 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+      .ci-cert-row:hover .ci-row-sub,
+      .ci-cert-row:focus-visible .ci-row-sub,
+      .ci-cert-row.ci-active .ci-row-sub { color: rgba(10, 10, 10, 0.7); }
+
+      /* Preview Column */
+      .ci-preview-col {
+        min-width: 0; position: sticky; top: 40px;
+        z-index: 3; pointer-events: none;
+      }
+      .ci-preview-frame {
+        pointer-events: auto; position: relative;
+        background: #000; border: 1px solid var(--ci-line);
+        padding: 16px; aspect-ratio: 4/3;
+        opacity: 0; visibility: hidden;
+        transform: translateY(12px);
+        transition: opacity .3s cubic-bezier(0.16, 1, 0.3, 1), transform .3s cubic-bezier(0.16, 1, 0.3, 1), visibility .3s ease;
+        box-shadow: 0 25px 60px rgba(0,0,0,0.9);
+      }
+      .ci-preview-frame.ci-visible {
+        opacity: 1; visibility: visible; transform: translateY(0);
+      }
+      .ci-preview-frame .ci-mat {
+        position: relative; width: 100%; height: 100%;
+        background: var(--ci-paper);
+        display: flex; align-items: center; justify-content: center;
+        overflow: hidden;
+      }
+      .ci-preview-frame img {
+        width: 100%; height: 100%; object-fit: contain;
+        opacity: 0; transition: opacity .25s ease;
+        cursor: zoom-in;
+      }
+      .ci-preview-frame img.ci-show { opacity: 1; }
+
+      .ci-footer-line {
+        text-align: center; padding: 60px 0 90px;
+        font-family: 'Space Mono', monospace; font-size: 11px;
+        letter-spacing: 0.14em; text-transform: uppercase;
+        color: var(--ci-gray-mid);
+        border-top: 1px solid var(--ci-line);
+      }
+
+      /* Lightbox */
+      .ci-lightbox {
+        position: fixed; inset: 0; z-index: 1000;
+        background: rgba(6,6,6,0.95);
+        display: flex; align-items: center; justify-content: center;
+        padding: 5vw; opacity: 0; pointer-events: none; transition: opacity .3s ease;
+      }
+      .ci-lightbox.ci-open { opacity: 1; pointer-events: auto; }
+      .ci-lightbox img { max-width: 100%; max-height: 88vh; box-shadow: 0 30px 80px rgba(0,0,0,0.8); }
+      .ci-lightbox-close {
+        position: absolute; top: 26px; right: 6vw;
+        font-family: 'Space Mono', monospace; font-size: 12px;
+        letter-spacing: 0.1em; text-transform: uppercase; color: var(--ci-bone);
+        background: none; border: 1px solid var(--ci-line);
+        padding: 8px 16px; border-radius: 999px; cursor: pointer;
+      }
+      .ci-lightbox-close:hover { border-color: var(--ci-bone); }
+      .ci-lightbox-close:focus-visible { outline: 2px solid var(--ci-bone); outline-offset: 2px; }
+
+      @media (max-width:900px) {
+        .ci-split { grid-template-columns: 1fr; gap: 36px; }
+        .ci-cert-list::before { right: 0; }
+        .ci-cert-row::after { right: 0; }
+        .ci-cert-row::before { right: 0; }
+        .ci-preview-col {
+          order: -1; position: sticky; top: 0;
+          width: 100%; padding-top: 16px; padding-bottom: 16px;
+          background: rgba(10,10,10,0.96); backdrop-filter: blur(10px);
+          border-bottom: 1px solid var(--ci-line);
+          z-index: 50;
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .cert-index-wrapper * { transition-duration: 0.001ms !important; }
+      }
+    </style>
+
+    <div class="cert-index-wrapper">
+
+      <section class="ci-intro ci-page">
+        <div class="ci-eyebrow">VERIFIED CREDENTIALS — UPDATED <span class="ci-yr">2026</span></div>
+        <h2>TRACE THE <span class="ci-accent">LINE.</span><span class="ci-line2">find the proof.</span></h2>
+        <p>Every course, exam, and program completed — cataloged here. Hover or focus any entry to reveal its certificate.</p>
+      </section>
+
+      <main class="ci-split ci-page">
+
+        <div class="ci-list-col">
+          <ul class="ci-cert-list" id="ciCertList">
+
+            <li class="ci-cert-row" tabindex="0" data-category="Course"
+                data-title="TESDA ONLINE COURSE 1" data-issuer="TESDA"
+                data-date="2026" data-id="TESDA-01" data-image="assets/img/1.png">
+              <span class="ci-row-main">
+                <span class="ci-row-title">TESDA ONLINE COURSE 1</span>
+                <span class="ci-row-sub">TESDA · 2026</span>
+              </span>
+            </li>
+
+            <li class="ci-cert-row" tabindex="0" data-category="Course"
+                data-title="TESDA ONLINE COURSE 2" data-issuer="TESDA"
+                data-date="2026" data-id="TESDA-02" data-image="assets/img/2.png">
+              <span class="ci-row-main">
+                <span class="ci-row-title">TESDA ONLINE COURSE 2</span>
+                <span class="ci-row-sub">TESDA · 2026</span>
+              </span>
+            </li>
+
+            <li class="ci-cert-row" tabindex="0" data-category="Development"
+                data-title="FLUTTER & DART — THE COMPLETE GUIDE" data-issuer="UDEMY / ACADEMIND"
+                data-date="2025" data-id="FLUTTER-CERT" data-image="assets/img/fluttercert.png">
+              <span class="ci-row-main">
+                <span class="ci-row-title">FLUTTER & DART — THE COMPLETE GUIDE</span>
+                <span class="ci-row-sub">UDEMY / ACADEMIND · 2025</span>
+              </span>
+            </li>
+
+            <li class="ci-cert-row" tabindex="0" data-category="Skill"
+                data-title="TYPING SPEED TEST — CERTIFIED" data-issuer="TYPING TEST"
+                data-date="2025" data-id="TYPING-CERT" data-image="assets/img/typingtest.png">
+              <span class="ci-row-main">
+                <span class="ci-row-title">TYPING SPEED TEST — CERTIFIED</span>
+                <span class="ci-row-sub">TYPING TEST · 2025</span>
+              </span>
+            </li>
+
+            <li class="ci-cert-row" tabindex="0" data-category="Cloud"
+                data-title="SOLUTIONS ARCHITECT — ASSOCIATE" data-issuer="AMAZON WEB SERVICES"
+                data-date="MAR 2026" data-id="AWS-SAA-04471" data-image="">
+              <span class="ci-row-main">
+                <span class="ci-row-title">SOLUTIONS ARCHITECT — ASSOCIATE</span>
+                <span class="ci-row-sub">AMAZON WEB SERVICES · 2026 · ID: AWS-SAA-04471</span>
+              </span>
+            </li>
+
+            <li class="ci-cert-row" tabindex="0" data-category="Development"
+                data-title="FRONT-END DEVELOPER PROFESSIONAL CERTIFICATE" data-issuer="META"
+                data-date="NOV 2025" data-id="META-FE-88213" data-image="">
+              <span class="ci-row-main">
+                <span class="ci-row-title">FRONT-END DEVELOPER PROFESSIONAL CERTIFICATE</span>
+                <span class="ci-row-sub">META · 2025 · ID: META-FE-88213</span>
+              </span>
+            </li>
+
+            <li class="ci-cert-row" tabindex="0" data-category="Data"
+                data-title="DATA ANALYTICS PROFESSIONAL CERTIFICATE" data-issuer="GOOGLE"
+                data-date="JUL 2025" data-id="GG-DA-15590" data-image="">
+              <span class="ci-row-main">
+                <span class="ci-row-title">DATA ANALYTICS PROFESSIONAL CERTIFICATE</span>
+                <span class="ci-row-sub">GOOGLE · 2025 · ID: GG-DA-15590</span>
+              </span>
+            </li>
+
+            <li class="ci-cert-row" tabindex="0" data-category="Design"
+                data-title="USER EXPERIENCE DESIGN FUNDAMENTALS" data-issuer="INTERACTION DESIGN FOUNDATION"
+                data-date="APR 2025" data-id="IDF-UX-33701" data-image="">
+              <span class="ci-row-main">
+                <span class="ci-row-title">USER EXPERIENCE DESIGN FUNDAMENTALS</span>
+                <span class="ci-row-sub">INTERACTION DESIGN FOUNDATION · 2025 · ID: IDF-UX-33701</span>
+              </span>
+            </li>
+
+            <li class="ci-cert-row" tabindex="0" data-category="Cloud"
+                data-title="AZURE FUNDAMENTALS (AZ-900)" data-issuer="MICROSOFT"
+                data-date="JAN 2025" data-id="MS-AZ900-22841" data-image="">
+              <span class="ci-row-main">
+                <span class="ci-row-title">AZURE FUNDAMENTALS (AZ-900)</span>
+                <span class="ci-row-sub">MICROSOFT · 2025 · ID: MS-AZ900-22841</span>
+              </span>
+            </li>
+
+            <li class="ci-cert-row" tabindex="0" data-category="Business"
+                data-title="PROJECT MANAGEMENT PROFESSIONAL (PMP)" data-issuer="PROJECT MANAGEMENT INSTITUTE"
+                data-date="SEP 2024" data-id="PMI-PMP-77209" data-image="">
+              <span class="ci-row-main">
+                <span class="ci-row-title">PROJECT MANAGEMENT PROFESSIONAL (PMP)</span>
+                <span class="ci-row-sub">PROJECT MANAGEMENT INSTITUTE · 2024 · ID: PMI-PMP-77209</span>
+              </span>
+            </li>
+
+            <li class="ci-cert-row" tabindex="0" data-category="Data"
+                data-title="MACHINE LEARNING SPECIALIZATION" data-issuer="DEEPLEARNING.AI"
+                data-date="MAY 2024" data-id="DLAI-ML-05512" data-image="">
+              <span class="ci-row-main">
+                <span class="ci-row-title">MACHINE LEARNING SPECIALIZATION</span>
+                <span class="ci-row-sub">DEEPLEARNING.AI · 2024 · ID: DLAI-ML-05512</span>
+              </span>
+            </li>
+
+            <li class="ci-cert-row" tabindex="0" data-category="Development"
+                data-title="RESPONSIVE WEB DESIGN" data-issuer="FREECODECAMP"
+                data-date="FEB 2024" data-id="FCC-RWD-90013" data-image="">
+              <span class="ci-row-main">
+                <span class="ci-row-title">RESPONSIVE WEB DESIGN</span>
+                <span class="ci-row-sub">FREECODECAMP · 2024 · ID: FCC-RWD-90013</span>
+              </span>
+            </li>
+
+          </ul>
+        </div>
+
+        <aside class="ci-preview-col">
+          <div class="ci-preview-frame" id="ciPreviewFrame">
+            <div class="ci-mat">
+              <img id="ciPreviewImg" alt="Certificate Preview">
+            </div>
+          </div>
+        </aside>
+
+      </main>
+
+      <div class="ci-footer-line ci-page">ARCHIVE COMPILED 2026 — EVERY ENTRY VERIFIABLE BY CREDENTIAL ID</div>
+
+      <div class="ci-lightbox" id="ciLightbox">
+        <button class="ci-lightbox-close" id="ciLightboxClose">CLOSE ✕</button>
+        <img id="ciLightboxImg" src="" alt="Certificate full size">
+      </div>
+
+    </div>
+    <!-- ═══ END NEW CERTIFICATES DESIGN ═══ -->
+
+    <script>
+    (function() {
+      const ciRows = Array.from(document.querySelectorAll('.ci-cert-row'));
+      const ciCertList = document.getElementById('ciCertList');
+      const ciPreviewFrame = document.getElementById('ciPreviewFrame');
+      const ciPreviewImg = document.getElementById('ciPreviewImg');
+      const ciLightbox = document.getElementById('ciLightbox');
+      const ciLightboxImg = document.getElementById('ciLightboxImg');
+
+      // SVG Certificate Vector Generator
+      const ciSvgCache = new Map();
+      function ciPlaceholderFor(row) {
+        if (ciSvgCache.has(row)) return ciSvgCache.get(row);
+        const title = row.dataset.title || '';
+        const issuer = row.dataset.issuer || '';
+        const date = row.dataset.date || '';
+        const id = row.dataset.id || '';
+        const svg = `
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600">
+            <rect width="800" height="600" fill="#f3f1ea"/>
+            <rect x="24" y="24" width="752" height="552" fill="none" stroke="#121110" stroke-width="2"/>
+            <rect x="34" y="34" width="732" height="532" fill="none" stroke="#121110" stroke-width="0.75"/>
+            <path d="M 50 70 L 50 50 L 70 50" fill="none" stroke="#121110" stroke-width="1.5"/>
+            <path d="M 750 70 L 750 50 L 730 50" fill="none" stroke="#121110" stroke-width="1.5"/>
+            <path d="M 50 530 L 50 550 L 70 550" fill="none" stroke="#121110" stroke-width="1.5"/>
+            <path d="M 750 530 L 750 550 L 730 550" fill="none" stroke="#121110" stroke-width="1.5"/>
+            <text x="400" y="110" text-anchor="middle" font-family="Space Mono, monospace" font-size="12" letter-spacing="3" fill="#666660">OFFICIAL CERTIFICATION OF ACHIEVEMENT</text>
+            <text x="400" y="150" text-anchor="middle" font-family="Fraunces, serif" font-size="20" letter-spacing="1" fill="#121110">${issuer}</text>
+            <line x1="250" y1="180" x2="550" y2="180" stroke="#121110" stroke-width="0.5"/>
+            <text x="400" y="230" text-anchor="middle" font-family="Space Mono, monospace" font-size="11" letter-spacing="2" fill="#666660">THIS IS TO CERTIFY THAT THE REQUIREMENT HAS BEEN MET FOR</text>
+            <text x="400" y="290" text-anchor="middle" font-family="Space Mono, monospace" font-size="18" font-weight="bold" fill="#121110">${title}</text>
+            <circle cx="400" cy="410" r="42" fill="none" stroke="#121110" stroke-width="1.5"/>
+            <circle cx="400" cy="410" r="35" fill="none" stroke="#121110" stroke-width="0.5" stroke-dasharray="4 2"/>
+            <path d="M386 410 l10 10 l20 -22" fill="none" stroke="#121110" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <text x="80" y="520" font-family="Space Mono, monospace" font-size="10" fill="#666660">DATE ISSUED: ${date}</text>
+            <text x="720" y="520" text-anchor="end" font-family="Space Mono, monospace" font-size="10" fill="#666660">VERIFICATION ID: ${id}</text>
+          </svg>`;
+        const uri = 'data:image/svg+xml;utf8,' + encodeURIComponent(svg);
+        ciSvgCache.set(row, uri);
+        return uri;
+      }
+
+      function ciShowPreview(row) {
+        ciRows.forEach(r => r.classList.remove('ci-active'));
+        row.classList.add('ci-active');
+        const src = row.dataset.image && row.dataset.image.trim() !== '' ? row.dataset.image : ciPlaceholderFor(row);
+        ciPreviewImg.classList.remove('ci-show');
+        ciPreviewImg.onload = () => ciPreviewImg.classList.add('ci-show');
+        ciPreviewImg.src = src;
+        ciPreviewFrame.classList.add('ci-visible');
+      }
+
+      function ciHidePreview() {
+        ciRows.forEach(r => r.classList.remove('ci-active'));
+        ciPreviewFrame.classList.remove('ci-visible');
+        ciPreviewImg.classList.remove('ci-show');
+      }
+
+      ciRows.forEach(row => {
+        row.addEventListener('mouseenter', () => ciShowPreview(row));
+        row.addEventListener('focus', () => ciShowPreview(row));
+        row.addEventListener('click', () => ciShowPreview(row));
+        row.addEventListener('keydown', e => {
+          if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); ciShowPreview(row); }
+        });
+      });
+
+      ciCertList.addEventListener('mouseleave', () => ciHidePreview());
+
+      ciPreviewImg.addEventListener('click', () => {
+        if (!ciPreviewImg.src || !ciPreviewFrame.classList.contains('ci-visible')) return;
+        ciLightboxImg.src = ciPreviewImg.src;
+        ciLightbox.classList.add('ci-open');
+      });
+
+      document.getElementById('ciLightboxClose').addEventListener('click', () => ciLightbox.classList.remove('ci-open'));
+      ciLightbox.addEventListener('click', e => { if (e.target === ciLightbox) ciLightbox.classList.remove('ci-open'); });
+      document.addEventListener('keydown', e => { if (e.key === 'Escape') ciLightbox.classList.remove('ci-open'); });
+    })();
+    </script>
 
     <!-- ═══ MOBILE WORKS — CURTAIN INTRO + CARDS ═══ -->
     <div class="mobile-projects-grid desktop-hidden">
@@ -551,16 +1035,16 @@
       </div>
 
       <!-- Cards -->
-      <div class="mob-works-label">
-        <span class="mob-works-eyebrow">PROJECTS</span>
-        <div class="mob-works-divider"></div>
+      <div class="mob-certs-label">
+        <span class="mob-certs-eyebrow">PROJECTS</span>
+        <div class="mob-certs-divider"></div>
       </div>
 
       <div class="projects-grid">
 
         <div class="project-card">
           <div class="card-image">
-            <img src="assets/img/c1.png" alt="Project 1" class="card-img">
+            <img src="assets/img/c1.webp" alt="Project 1" class="card-img">
             <span class="card-num">01</span>
           </div>
           <div class="card-body">
@@ -574,7 +1058,7 @@
 
         <div class="project-card">
           <div class="card-image">
-            <img src="assets/img/2.png" alt="Project 2" class="card-img">
+            <img src="assets/img/2.webp" alt="Project 2" class="card-img">
             <span class="card-num">02</span>
           </div>
           <div class="card-body">
@@ -590,7 +1074,7 @@
 
         <div class="project-card">
           <div class="card-image">
-            <img src="assets/img/3.png" alt="Project 3" class="card-img">
+            <img src="assets/img/3.webp" alt="Project 3" class="card-img">
             <span class="card-num">03</span>
           </div>
           <div class="card-body">
@@ -605,7 +1089,7 @@
 
         <div class="project-card">
           <div class="card-image">
-            <img src="assets/img/4.png" alt="Project 4" class="card-img">
+            <img src="assets/img/4.webp" alt="Project 4" class="card-img">
             <span class="card-num">04</span>
           </div>
           <div class="card-body">
@@ -619,7 +1103,10 @@
         </div>
 
         <div class="project-card">
-          <div class="card-image p5"><span class="card-num">05</span></div>
+          <div class="card-image">
+            <img src="assets/img/5.webp" alt="Collaboration Ai Project" class="card-img">
+            <span class="card-num">05</span>
+          </div>
           <div class="card-body">
             <h2 class="card-title">Collaboration Ai Project</h2>
             <p class="card-desc">AI-powered platform designed for the government sector, focusing on secure data
@@ -631,7 +1118,10 @@
         </div>
 
         <div class="project-card">
-          <div class="card-image p6"><span class="card-num">06</span></div>
+          <div class="card-image">
+            <img src="assets/img/6.webp" alt="Type Specimen Poster Series" class="card-img">
+            <span class="card-num">06</span>
+          </div>
           <div class="card-body">
             <h2 class="card-title">Type Specimen Poster Series</h2>
             <p class="card-desc">Six-piece editorial poster series exploring grid systems, typographic hierarchy and
@@ -790,6 +1280,50 @@
         </div>
       </div>
 
+      <!-- IT & CORE SKILLS -->
+      <div class="tech-section" data-reveal>
+        <div class="tech-section-header">
+          <div class="tech-section-line"></div>
+          <span class="tech-section-title">IT & Core Skills</span>
+          <div class="tech-section-line"></div>
+        </div>
+        <div class="tech-grid">
+
+          <!-- Networking -->
+          <div class="tech-card">
+            <div class="tech-icon-wrap">
+              <i class="fa-solid fa-network-wired" style="font-size: 40px; color: #4CAF50;"></i>
+            </div>
+            <span class="tech-card-name">Networking</span>
+          </div>
+
+          <!-- OS Setup -->
+          <div class="tech-card">
+            <div class="tech-icon-wrap">
+              <i class="fa-solid fa-desktop" style="font-size: 40px; color: #2196F3;"></i>
+            </div>
+            <span class="tech-card-name">OS Setup</span>
+          </div>
+
+          <!-- Data Encoding -->
+          <div class="tech-card">
+            <div class="tech-icon-wrap">
+              <i class="fa-solid fa-database" style="font-size: 40px; color: #FFC107;"></i>
+            </div>
+            <span class="tech-card-name">Data Encoding</span>
+          </div>
+
+          <!-- MS Office -->
+          <div class="tech-card">
+            <div class="tech-icon-wrap">
+              <i class="fa-brands fa-microsoft" style="font-size: 40px; color: #00A4EF;"></i>
+            </div>
+            <span class="tech-card-name">MS Office</span>
+          </div>
+
+        </div>
+      </div>
+
     </div>
   </section>
 
@@ -852,6 +1386,10 @@
                 <div class="footer-social-icons">
                   <a href="https://www.linkedin.com/in/ᴊᴀᴅᴇ-ᴍᴀɴᴄɪᴏ-504169380" target="_blank" class="footer-social-icon"
                     title="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+                  <a href="https://ph.jobstreet.com/profile/jade-mancio" target="_blank"
+                    class="footer-social-icon footer-jobstreet" title="JobStreet">
+                    <img src="assets/img/jobs1.png" alt="JobStreet" class="jobstreet-icon-img">
+                  </a>
                   <a href="https://github.com/jade-mancio-dev" target="_blank" class="footer-social-icon"
                     title="GitHub"><i class="fa-brands fa-github"></i></a>
                   <a href="https://www.facebook.com/share/1CGV7vPhP8/" target="_blank" class="footer-social-icon"
@@ -956,8 +1494,8 @@
       minWidth: 200,
       // Black background
       backgroundColor: 0x000000,
-      // Teal/cyan base ring color
-      baseColor: 0x1a6080,
+      // Deep blue base ring color (no green channel → removes green canvas spread)
+      baseColor: 0x0a1a60,
       // Bright highlight (pink/white)
       color2: 0xff88cc,
       amplitudeFactor: 1.2,
@@ -965,7 +1503,8 @@
       speed: 0.85,
       mouseEase: true,
       scaleMobile: 1,
-      xOffset: 0.22,   // shift halo slightly right so text fits left
+      // Center on mobile (xOffset:0), offset right on desktop so text fits left
+      xOffset: window.innerWidth <= 768 ? 0 : 0.22,
       yOffset: 0.0
     });
   </script>

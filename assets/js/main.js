@@ -185,234 +185,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   document.querySelectorAll('[data-contact-reveal]').forEach(el => contactObserver.observe(el));
 
-  // ═══════════════════════════════════════════════════════════════
-  // UNIFIED WORKS SCROLL ANIMATION (Entrance + Gallery) — OPTIMIZED
-  // ═══════════════════════════════════════════════════════════════
-  const worksScene = document.getElementById('works-scroll-scene');
-  if (worksScene) {
-    // --- Cache ALL DOM lookups outside render loop ---
-    const wWrap     = document.getElementById('works-title-wrap');
-    const wTitle    = document.querySelector('.works-entrance-title');
-    const wEyebrow  = document.querySelector('.works-eyebrow');
-    const wVignette = document.getElementById('works-vignette');
-    const wHint     = document.getElementById('works-scroll-hint');
-    const groupTop  = document.getElementById('works-group-top');
-    const groupBot  = document.getElementById('works-group-bot');
 
-    const wStrips = [
-      { el: document.getElementById('wt1'), dir:  1, base: -500 },
-      { el: document.getElementById('wt2'), dir: -1, base: -300 },
-      { el: document.getElementById('wb1'), dir: -1, base: -500 },
-      { el: document.getElementById('wb2'), dir:  1, base: -300 },
-    ];
-
-    const stickyStage = document.getElementById('works-sticky-stage');
-    const cardWrappers = stickyStage
-      ? stickyStage.querySelectorAll('.work-card-wrapper')
-      : [];
-    const numCards = cardWrappers.length;
-
-    // --- Helpers ---
-    const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
-    const lerp  = (a, b, t) => a + (b - a) * t;
-    const easeInOut = t => t < 0.5 ? 4 * t * t * t : 1 - (-2 * t + 2) ** 3 / 2;
-    const easeExp   = t => t === 0 ? 0 : Math.pow(2, 10 * t - 10);
-
-    let uSceneH = 0, uViewH = 0;
-    const uMeasure = () => {
-      uSceneH = worksScene.offsetHeight;
-      uViewH  = window.innerHeight;
-    };
-    uMeasure();
-
-    // --- Device detection (checked once, updated on resize) ---
-    let isMobile = window.innerWidth <= 768;
-
-    // Timeline thresholds
-    let ENTRANCE_END, GALLERY_START, GALLERY_END, SLIDE_RATIO;
-    const setThresholds = () => {
-      isMobile = window.innerWidth <= 768;
-      if (isMobile) {
-        ENTRANCE_END  = 0.75; // animation done at 75% of the 30vh scroll = ~22.5vh
-        GALLERY_START = 1.0;
-        GALLERY_END   = 1.0;
-        SLIDE_RATIO   = 1.0;
-      } else {
-        ENTRANCE_END  = 0.20;
-        GALLERY_START = 0.18;
-        GALLERY_END   = 0.98;
-        SLIDE_RATIO   = 0.85;
-      }
-    };
-    setThresholds();
-
-    // --- Smoothing state (desktop only) ---
-    let smoothRaw = 0;
-    const LERP_FACTOR = 0.12;
-    const cardCurrentX = new Array(numCards).fill(110);
-
-    // --- Scroll-triggered render with settle ---
-    let uRaf = null;
-    let settleFrames = 0;
-    const MAX_SETTLE = 30; // frames to keep running after scroll stops (for lerp)
-    let snapTimeout = null;
-
-    // --- Split Title for GPU-Accelerated Spreading ---
-    // Avoids laggy layout recalculations caused by letter-spacing animation
-    if (wTitle && wTitle.textContent) {
-      const titleText = wTitle.textContent;
-      wTitle.textContent = '';
-      wTitle.style.display = 'flex';
-      wTitle.style.justifyContent = 'center';
-      
-      window.titleLetters = [];
-      for(let i=0; i<titleText.length; i++) {
-          const char = titleText[i];
-          if (char === ' ') {
-              const space = document.createElement('span');
-              space.innerHTML = '&nbsp;';
-              wTitle.appendChild(space);
-              continue;
-          }
-          const span = document.createElement('span');
-          span.textContent = char;
-          span.style.display = 'inline-block';
-          span.style.willChange = 'transform';
-          const centerOffset = (i - (titleText.length-1)/2); 
-          window.titleLetters.push({ el: span, offset: centerOffset });
-          wTitle.appendChild(span);
-      }
-    }
-
-    const uRender = (overrideRaw) => {
-      let raw;
-
-      if (isMobile) {
-        // Mobile: use the auto-play raw value injected by the timer
-        raw = (overrideRaw !== undefined) ? overrideRaw : 0;
-        smoothRaw = raw;
-      } else {
-        const targetRaw = clamp(
-          -worksScene.getBoundingClientRect().top / (uSceneH - uViewH), 0, 1
-        );
-        // Desktop: lerp for buttery smoothness
-        smoothRaw += (targetRaw - smoothRaw) * LERP_FACTOR;
-        if (Math.abs(smoothRaw - targetRaw) < 0.0001) smoothRaw = targetRaw;
-        raw = smoothRaw;
-
-        // Continue loop only if still settling (desktop lerp)
-        if (Math.abs(smoothRaw - targetRaw) > 0.0001) {
-          settleFrames = MAX_SETTLE;
-        }
-        if (settleFrames > 0) {
-          settleFrames--;
-          uRaf = requestAnimationFrame(() => uRender());
-        } else {
-          uRaf = null;
-        }
-      }
-
-      // ─── ENTRANCE PHASE ───
-      const entranceP = clamp(raw / ENTRANCE_END, 0, 1);
-      
-      // Pro cinematic zoom: starts slow, accelerates exponentially
-      const sc = lerp(1, 28, easeExp(entranceP));
-      const titleOp = entranceP < 0.75 ? 1 : clamp(1 - (entranceP - 0.75) / 0.25, 0, 1);
-
-      // Add rotateX to showcase the 3D extruded text-shadow depth
-      wWrap.style.transform      = `scale(${sc.toFixed(3)}) translateZ(0) rotateX(${lerp(0, 35, easeInOut(entranceP))}deg)`;
-      wWrap.style.opacity        = titleOp.toFixed(3);
-      
-      // Hardware-accelerated letter spread (replaces laggy letter-spacing)
-      if (window.titleLetters) {
-        const spreadAmount = lerp(0, 35, easeInOut(entranceP)); // pixels per letter offset
-        window.titleLetters.forEach(l => {
-           l.el.style.transform = `translate3d(${l.offset * spreadAmount}px, 0, 0)`;
-        });
-      }
-
-      wEyebrow.style.opacity     = clamp(1 - entranceP / 0.15, 0, 1).toFixed(3);
-      wEyebrow.style.transform   = `translate3d(0, ${-entranceP * 80}px, 0)`; // slides up and out
-      
-      // Flash dramatic dark vignette
-      wVignette.style.opacity    = clamp(lerp(0.45, 1, easeInOut(entranceP)), 0, 1).toFixed(3);
-      wHint.style.opacity        = clamp(1 - entranceP * 3, 0, 1).toFixed(3);
-
-      // Marquees - Add slight rotation and Z-translation for depth
-      const travel  = entranceP * 1200;
-      const groupOp = entranceP < 0.15
-        ? lerp(0, 1, entranceP / 0.15)
-        : entranceP < 0.7 ? 1
-        : lerp(1, 0, (entranceP - 0.7) / 0.3);
-
-      for (let s = 0; s < wStrips.length; s++) {
-        // Top group strips go up slightly, bottom go down slightly to "open the door"
-        const yOffset = (s < 2) ? -entranceP * 120 : entranceP * 120;
-        wStrips[s].el.style.transform = `translate3d(${(wStrips[s].base + wStrips[s].dir * travel).toFixed(1)}px, ${yOffset.toFixed(1)}px, 0) scale(${1 - entranceP * 0.15})`;
-        wStrips[s].el.style.opacity   = groupOp.toFixed(3);
-      }
-
-      // Fade out entrance when gallery starts
-      const entranceVis = raw < GALLERY_START ? 1 :
-                          raw < GALLERY_START + 0.05 ? clamp(1 - (raw - GALLERY_START) / 0.05, 0, 1) : 0;
-      const eVisStr = entranceVis.toFixed(3);
-      if (groupTop) groupTop.style.opacity = eVisStr;
-      if (groupBot) groupBot.style.opacity = eVisStr;
-      if (raw >= GALLERY_START) {
-        wVignette.style.opacity = eVisStr;
-        wWrap.style.opacity     = eVisStr;
-      }
-
-      // ─── GALLERY PHASE (desktop only — mobile uses normal grid) ───
-      if (!isMobile && numCards > 0) {
-        const galleryP = clamp(
-          (raw - GALLERY_START) / (GALLERY_END - GALLERY_START), 0, 1
-        );
-        const segSize = 1 / numCards;
-
-        for (let i = 0; i < numCards; i++) {
-          const segStart = i * segSize;
-          const slideEnd = segStart + segSize * SLIDE_RATIO;
-          const wrapper = cardWrappers[i];
-
-          // ─── DESKTOP: Slide from right (with lerp) ───
-          let targetX;
-          if (galleryP <= segStart) {
-            targetX = 110;
-          } else if (galleryP <= slideEnd) {
-            const p = (galleryP - segStart) / (slideEnd - segStart);
-            const ease = 1 - Math.pow(1 - p, 3);
-            targetX = (1 - ease) * 110;
-          } else {
-            targetX = 0;
-          }
-          cardCurrentX[i] += (targetX - cardCurrentX[i]) * LERP_FACTOR;
-          if (Math.abs(cardCurrentX[i] - targetX) < 0.05) cardCurrentX[i] = targetX;
-          wrapper.style.transform = `translate3d(${cardCurrentX[i].toFixed(1)}%,0,0)`;
-        }
-      }
-    };
-
-    // ─── MOBILE: intro removed — show cards directly ───
-    if (isMobile) {
-      // Nothing to do — #works-scroll-scene is hidden via CSS on mobile
-
-    } else {
-      // ─── DESKTOP: Scroll-driven ───
-      const uSchedule = () => {
-        settleFrames = MAX_SETTLE;
-        if (!uRaf) uRaf = requestAnimationFrame(() => uRender());
-      };
-
-      window.addEventListener('scroll', uSchedule, { passive: true });
-      window.addEventListener('resize', () => {
-        uMeasure();
-        setThresholds();
-        uSchedule();
-      }, { passive: true });
-      uSchedule();
-    }
-  }
 });
 
 // ═══════════════════════════════════════════════════════════════
@@ -421,7 +194,7 @@ document.addEventListener('DOMContentLoaded', () => {
 // MOBILE CURTAIN — SELECTED WORKS INTRO (mobile only)
 // ═══════════════════════════════════════════════════════════════
 (function initMobileCurtain() {
-  if (window.innerWidth > 768) return;
+  if (window.innerWidth > 767) return;
 
   const curtainEl  = document.getElementById('mob-curtain-intro');
   const topCurtain = document.getElementById('mob-top-curtain');
@@ -441,7 +214,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function update() {
-    if (window.innerWidth > 768) return;
+    if (window.innerWidth > 767) return;
 
     // How far we have scrolled PAST the top of the works grid
     const relScroll = window.scrollY - sectionDocTop;
@@ -465,7 +238,7 @@ document.addEventListener('DOMContentLoaded', () => {
   window.addEventListener('load',   () => { measure(); update(); });
   window.addEventListener('scroll', update, { passive: true });
   window.addEventListener('resize', () => {
-    if (window.innerWidth > 768) { curtainEl.style.opacity = '0'; return; }
+    if (window.innerWidth > 767) { curtainEl.style.opacity = '0'; return; }
     measure(); update();
   }, { passive: true });
 
@@ -630,14 +403,14 @@ document.addEventListener('keydown', (e) => {
 // ═══════════════════════════════════════════════════════════════
 (function initAboutReveal() {
   // Desktop only
-  if (window.innerWidth <= 768) return;
+  if (window.innerWidth <= 767) return;
 
   const revealLayer  = document.getElementById('aboutRevealLayer');
   const aboutSection = document.getElementById('about');
-  const textPathEl   = document.getElementById('aboutRingTextPath');
+  const ringCircleEl   = document.getElementById('aboutRingCircle');
   if (!revealLayer || !aboutSection) return;
 
-  let isDesktop = window.innerWidth > 768;
+  let isDesktop = window.innerWidth > 767;
 
   // ── Clip-path constants ───────────────────────────────────────
   // 55% keeps r (661px) below half-viewport-width (768px) so curved arcs
@@ -659,25 +432,20 @@ document.addEventListener('keydown', (e) => {
     const rPct = (p * MAX_RADIUS).toFixed(3);
     revealLayer.style.clipPath = 'circle(' + rPct + '% at ' + ORIGIN + ')';
 
-    // Synchronize text ring without scaling font size
-    if (textPathEl) {
+    // Synchronize white ring without updating complex path
+    if (ringCircleEl) {
       const vw  = window.innerWidth;
       const vh  = window.innerHeight;
-      const cx  = vw / 2;
-      const cy  = vh / 2;
       const ref = Math.sqrt((vw * vw + vh * vh) / 2);
       
       const circleRadiusPx = ref * (p * (MAX_RADIUS / 100));
-      // Min radius so text is perfectly readable even when p=0 (circle not open)
-      const minTextRadius = Math.min(vw, vh) * 0.18; 
-      const safeR = Math.round(Math.max(circleRadiusPx + 20, minTextRadius));
+      // Min radius starts at 0 or small
+      const safeR = Math.max(circleRadiusPx, 0); 
 
-      // Update only when radius changes by >= 2 pixels to drastically cut down DOM reflows
-      if (Math.abs(safeR - lastR) >= 2) {
+      // Update only when radius changes by >= 0.5 pixels to ensure smoothness
+      if (Math.abs(safeR - lastR) >= 0.5) {
         lastR = safeR;
-        textPathEl.setAttribute('d',
-          `M ${cx},${cy} m -${safeR},0 a ${safeR},${safeR} 0 1,1 ${2*safeR},0 a ${safeR},${safeR} 0 1,1 -${2*safeR},0`
-        );
+        ringCircleEl.setAttribute('r', safeR);
       }
     }
   }
@@ -724,7 +492,7 @@ document.addEventListener('keydown', (e) => {
   // ── Resize ───────────────────────────────────────────────────
   window.addEventListener('resize', function () {
     var wasDesktop = isDesktop;
-    isDesktop = window.innerWidth > 768;
+    isDesktop = window.innerWidth > 767;
     if (!isDesktop && wasDesktop) {
       revealLayer.style.clipPath = '';
       currentP = 0;
@@ -734,7 +502,7 @@ document.addEventListener('keydown', (e) => {
 
   // ── Init ─────────────────────────────────────────────────────
   function init() {
-    isDesktop = window.innerWidth > 768;
+    isDesktop = window.innerWidth > 767;
     currentP  = 0;
     applyClip(0); // start hidden
     kickLoop();
@@ -883,7 +651,7 @@ document.addEventListener('keydown', (e) => {
         stroke: isMaj ? 'rgba(255,255,255,0.6)' : 'rgba(255,255,255,0.15)',
         'stroke-width': isQuarter ? '1.5' : isMaj ? '1' : '0.5', 
         'stroke-linecap': 'round',
-        filter: isQuarter ? 'url(#clock-glow)' : 'none'
+        filter: isQuarter ? 'none' : 'none'
       }));
     }
 
@@ -893,7 +661,7 @@ document.addEventListener('keydown', (e) => {
         x1: CX + Math.cos(angle)*(R-1),  y1: CY + Math.sin(angle)*(R-1),
         x2: CX + Math.cos(angle)*(R-28), y2: CY + Math.sin(angle)*(R-28),
         stroke: 'rgba(255,255,255,0.9)', 'stroke-width':'2.5', 'stroke-linecap':'round',
-        filter: 'url(#clock-glow)'
+        filter: 'none'
       }));
     });
 
@@ -947,7 +715,7 @@ document.addEventListener('keydown', (e) => {
     
     // Hour hand: wide body
     const hourHand = document.createElementNS(NS, 'g');
-    hourHand.appendChild(el('path', { d:`M${CX-2.5},${CY} L${CX-1.5},${CY-65} L${CX},${CY-85} L${CX+1.5},${CY-65} L${CX+2.5},${CY} Z`, fill:'rgba(255,255,255,0.8)', filter:'url(#clock-glow)' }));
+    hourHand.appendChild(el('path', { d:`M${CX-2.5},${CY} L${CX-1.5},${CY-65} L${CX},${CY-85} L${CX+1.5},${CY-65} L${CX+2.5},${CY} Z`, fill:'rgba(255,255,255,0.8)', filter:'none' }));
     svg.appendChild(hourHand);
 
     // Minute hand: slender body
@@ -955,16 +723,16 @@ document.addEventListener('keydown', (e) => {
     minHand.appendChild(el('path', { d:`M${CX-1.5},${CY} L${CX-1},${CY-115} L${CX},${CY-140} L${CX+1},${CY-115} L${CX+1.5},${CY} Z`, fill:'rgba(255,255,255,0.6)' }));
     svg.appendChild(minHand);
 
-    // Second hand: high-tech red sweeping line with target circle
+    // Second hand: clean white sweeping line with subtle accent
     const secHand = document.createElementNS(NS, 'g');
-    secHand.appendChild(el('line', { x1:CX, y1:CY+35, x2:CX, y2:CY-160, stroke:'rgba(255,60,60,0.9)', 'stroke-width':'1', 'stroke-linecap':'round', filter:'url(#clock-glow)' }));
-    // A small target reticle on the second hand
-    secHand.appendChild(el('circle', { cx:CX, cy:CY-120, r:4, fill:'none', stroke:'rgba(255,60,60,0.9)', 'stroke-width':'1.2', filter:'url(#clock-glow)' }));
+    secHand.appendChild(el('line', { x1:CX, y1:CY+35, x2:CX, y2:CY-160, stroke:'rgba(255,255,255,0.9)', 'stroke-width':'1', 'stroke-linecap':'round', filter:'none' }));
+    // A small reticle on the second hand
+    secHand.appendChild(el('circle', { cx:CX, cy:CY-120, r:3, fill:'none', stroke:'rgba(255,255,255,0.6)', 'stroke-width':'1', filter:'none' }));
     svg.appendChild(secHand);
 
     // Center cap details
     svg.appendChild(el('circle', { cx:CX, cy:CY, r:5, fill:'#000', stroke:'rgba(255,255,255,0.9)', 'stroke-width':'1.5' }));
-    svg.appendChild(el('circle', { cx:CX, cy:CY, r:2, fill:'rgba(255,60,60,0.9)' }));
+    svg.appendChild(el('circle', { cx:CX, cy:CY, r:2, fill:'rgba(255,255,255,0.7)' }));
 
     // --- Animation logic ---
     function rotateTo(g, deg, cx=CX, cy=CY) { g.setAttribute('transform', `rotate(${deg} ${cx} ${cy})`); }
@@ -1003,7 +771,7 @@ document.addEventListener('keydown', (e) => {
 // ABOUT REVEAL — Circular text ring that orbits the circle edge
 // ═══════════════════════════════════════════════════════════════
 (function initAboutCircleText() {
-  if (window.innerWidth <= 768) return;
+  if (window.innerWidth <= 767) return;
 
   const aboutSection = document.getElementById('about');
   const layer        = document.getElementById('aboutRingTextLayer');
@@ -1065,3 +833,134 @@ document.addEventListener('keydown', (e) => {
   window.addEventListener('scroll', scheduleOpacity, { passive: true });
   updateOpacity();
 })();
+
+// ═══════════════════════════════════════════════════════════════
+// NEW WORKS SPLIT SLIDER
+// Strategy: discrete wheel events (1 gesture = 1 slide).
+// After each advance, lenis.scrollTo(slidePosition, {immediate:true})
+// cancels Lenis inertia and pins the scroll to the exact slide
+// position — preventing Lenis from coasting through multiple
+// slide boundaries and causing the "skip" bug.
+// ═══════════════════════════════════════════════════════════════
+(function () {
+  const section = document.getElementById('new-works-section');
+  if (!section || window.innerWidth < 768) return;
+
+  const NW_TOTAL  = 6;
+  const NW_MAX    = NW_TOTAL - 1; // 5
+  const COOLDOWN  = 820;          // ms — matches CSS transition
+
+  let activeIndex = 0;
+  let isAnimating = false;
+
+  // ── Render visual state for slide idx ─────────────────────────
+  function renderSlide(idx) {
+    const pct = 100 / NW_TOTAL;
+    section.querySelector('.nw-left').style.transform  = `translateY(${idx * pct}%)`;
+    section.querySelector('.nw-right').style.transform = `translateY(-${idx * pct}%)`;
+
+    section.querySelectorAll('.nw-left  .nw-slide').forEach((s, i) => {
+      s.classList.toggle('active', i === (NW_MAX - idx));
+    });
+    section.querySelectorAll('.nw-right .nw-slide').forEach((s, i) => {
+      s.classList.toggle('active', i === idx);
+    });
+  }
+
+  // ── Scroll Y that the wrapper should be at for slide idx ──────
+  // Evenly distributes slides across the full scrollable range.
+  function slideScrollY(idx) {
+    const scrollable = section.offsetHeight - window.innerHeight;
+    return section.offsetTop + (idx / NW_MAX) * scrollable;
+  }
+
+  // ── Advance one slide, then pin Lenis to that position ────────
+  function goToSlide(idx) {
+    activeIndex = idx;
+    isAnimating = true;
+    renderSlide(activeIndex);
+
+    // Immediately snap Lenis scroll position to the current slide.
+    // This cancels any residual inertia so the next wheel event
+    // starts from the correct position, not some overshoot point.
+    if (window.lenis) {
+      window.lenis.scrollTo(slideScrollY(activeIndex), { immediate: true });
+    }
+
+    setTimeout(() => { isAnimating = false; }, COOLDOWN);
+  }
+
+  // ── Wheel handler ─────────────────────────────────────────────
+  // capture: true ensures we run BEFORE Lenis's wheel listener
+  window.addEventListener('wheel', (e) => {
+    const rect       = section.getBoundingClientRect();
+    const scrollable = section.offsetHeight - window.innerHeight;
+    const scrolled   = -rect.top; // negative = above viewport
+
+    // Only intercept while the wrapper is in its "sticky window"
+    if (scrolled < -5 || scrolled > scrollable + 5) return;
+
+    if (Math.abs(e.deltaY) < 8) return;
+
+    // Block Lenis entirely while animating
+    if (isAnimating) {
+      e.preventDefault();
+      e.stopPropagation();
+      e.stopImmediatePropagation();
+      return;
+    }
+
+    const dir  = e.deltaY > 0 ? 1 : -1;
+    const next = activeIndex + dir;
+
+    // Inside valid range → advance slide and BLIND Lenis to the event
+    if (next >= 0 && next <= NW_MAX) {
+      e.preventDefault();
+      e.stopPropagation();
+      e.stopImmediatePropagation();
+      goToSlide(next);
+    }
+  }, { passive: false, capture: true });
+
+  // ── Arrow key support ─────────────────────────────────────────
+  window.addEventListener('keydown', (e) => {
+    const rect     = section.getBoundingClientRect();
+    const scrollable = section.offsetHeight - window.innerHeight;
+    const scrolled = -rect.top;
+    if (scrolled < -5 || scrolled > scrollable + 5) return;
+
+    if (isAnimating) {
+      if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+        e.preventDefault();
+        e.stopPropagation();
+        e.stopImmediatePropagation();
+      }
+      return;
+    }
+
+    if (e.key === 'ArrowDown' && activeIndex < NW_MAX) {
+      e.preventDefault();
+      e.stopPropagation();
+      e.stopImmediatePropagation();
+      goToSlide(activeIndex + 1);
+    }
+    if (e.key === 'ArrowUp' && activeIndex > 0) {
+      e.preventDefault();
+      e.stopPropagation();
+      e.stopImmediatePropagation();
+      goToSlide(activeIndex - 1);
+    }
+  }, { capture: true });
+
+  // ── Init: if page loads mid-section (e.g. browser back), sync ─
+  (function syncOnLoad() {
+    const rect       = section.getBoundingClientRect();
+    const scrollable = section.offsetHeight - window.innerHeight;
+    const scrolled   = Math.max(0, Math.min(-rect.top, scrollable));
+    const startIdx   = Math.min(Math.round((scrolled / scrollable) * NW_MAX), NW_MAX);
+    activeIndex = isNaN(startIdx) ? 0 : startIdx;
+    renderSlide(activeIndex);
+  })();
+})();
+
+
